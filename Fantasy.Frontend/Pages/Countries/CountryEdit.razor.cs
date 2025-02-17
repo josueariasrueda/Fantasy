@@ -15,7 +15,7 @@ public partial class CountryEdit
     [Inject] private NavigationManager NavigationManager { get; set; } = null!;
     [Inject] private IRepository Repository { get; set; } = null!;
     [Inject] private ISnackbar Snackbar { get; set; } = null!;
-    [Inject] private IStringLocalizer<Literals> Localizer { get; set; } = null!;
+    [Inject] private IStringLocalizer<Literals> L { get; set; } = null!;
 
     [Parameter] public int Id { get; set; }
 
@@ -53,7 +53,7 @@ public partial class CountryEdit
         }
 
         Return();
-        Snackbar.Add(Localizer["RecordSavedOk"], Severity.Success);
+        Snackbar.Add(L["IURecordSavedOk"], Severity.Success);
     }
 
     private void Return()

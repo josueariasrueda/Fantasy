@@ -10,7 +10,7 @@ using MudBlazor;
 
 namespace Fantasy.Frontend.Pages.Countries;
 
-[Authorize(Roles = "Admin")]
+//[Authorize(Roles = "Admin")]
 public partial class CountriesIndex
 {
     private List<Country>? Countries { get; set; }
@@ -121,10 +121,11 @@ public partial class CountriesIndex
     {
         var parameters = new DialogParameters
             {
-                { "Message", string.Format(L["DeleteConfirm"], L["Country"], country.Name) }
+                { "Message", string.Format(L["IUDeleteConfirm"], L["AppCountry"], country.Name) }
             };
         var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.ExtraSmall, CloseOnEscapeKey = true };
-        var dialog = DialogService.Show<ConfirmDialog>(L["Confirmation"], parameters, options);
+        // var dialogs = DialogService.Show<ConfirmDialog>(L["Confirmation"], parameters, options);
+        var dialog = await DialogService.ShowAsync<ConfirmDialog>(L["IUConfirmation"], parameters, options);
         var result = await dialog.Result;
         if (result!.Canceled)
         {
