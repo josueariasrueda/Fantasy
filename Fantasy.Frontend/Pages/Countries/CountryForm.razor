@@ -1,0 +1,36 @@
+﻿<NavigationLock OnBeforeInternalNavigation="OnBeforeInternalNavigation" />
+
+<EditForm EditContext="editContext" OnValidSubmit="OnValidSubmit">
+    <DataAnnotationsValidator />
+
+
+
+    <MudTextField Label="@L["Country"]"
+                  @bind-Value="@Country.Name"
+                  For="@(() => Country.Name)"
+                  Class="mb-4" />
+    <MudTextField Label="@L["Code"]"
+                  @bind-Value="@Country.Code"
+                  For="@(() => Country.Code)"
+                  Class="mb-4" />
+    <MudTextField Label="@L["CallingCode"]"
+                  @bind-Value="@Country.CallingCode"
+                  For="@(() => Country.CallingCode)"
+                  Class="mb-4" />
+
+
+
+    <MudButton Variant="Variant.Outlined" 
+               StartIcon="@Icons.Material.Filled.ArrowBack" 
+               Color="Color.Info" 
+               OnClick="ReturnAction">
+                @L["IUReturn"]
+    </MudButton>
+
+    <MudButton Variant="Variant.Outlined" 
+               StartIcon="@Icons.Material.Filled.Check" 
+               Color="Color.Primary" 
+               ButtonType="ButtonType.Submit">
+                @L["IUSaveChanges"]
+    </MudButton>
+</EditForm>

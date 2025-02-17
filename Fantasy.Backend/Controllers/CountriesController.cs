@@ -1,77 +1,73 @@
-﻿using Fantasy.Backend.Data;
+﻿using Fantasy.Backend.UnitsOfWork.Interfaces;
+using Fantasy.Shared.DTOs;
 using Fantasy.Shared.Entities;
+
+//using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
-namespace Fantasy.Backend.Controllers
+namespace Fantasy.Backend.Controllers;
+
+[ApiController]
+//[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+[Route("api/[controller]")]
+public class CountriesController : GenericController<Country>
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class CountriesController : ControllerBase
+    private readonly ICountriesUnitOfWork _countriesUnitOfWork;
+
+    public CountriesController(IGenericUnitOfWork<Country> unit, ICountriesUnitOfWork countriesUnitOfWork) : base(unit)
     {
-        private readonly ApplicationDataContext _context;
+        _countriesUnitOfWork = countriesUnitOfWork;
+    }
 
-        public CountriesController(ApplicationDataContext context)
+    [AllowAnonymous]
+    [HttpGet("combo")]
+    public async Task<IActionResult> GetComboAsync()
+    {
+        return Ok(await _countriesUnitOfWork.GetComboAsync());
+    }
+
+    [HttpGet]
+    public override async Task<IActionResult> GetAsync()
+    {
+        var response = await _countriesUnitOfWork.GetAsync();
+        if (response.WasSuccess)
         {
-            _context = context;
+            return Ok(response.Result);
         }
+        return BadRequest();
+    }
 
-        [HttpGet]
-        public async Task<IActionResult> GetAsync()
+    [HttpGet("paginated")]
+    public override async Task<IActionResult> GetAsync(PaginationDTO pagination)
+    {
+        var response = await _countriesUnitOfWork.GetAsync(pagination);
+        if (response.WasSuccess)
         {
-            return Ok(await _context.Countries.ToListAsync());
+            return Ok(response.Result);
         }
+        return BadRequest();
+    }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetAsync(int id)
+    [HttpGet("totalRecordsPaginated")]
+    public async Task<IActionResult> GetTotalRecordsAsync([FromQuery] PaginationDTO pagination)
+    {
+        var action = await _countriesUnitOfWork.GetTotalRecordsAsync(pagination);
+        if (action.WasSuccess)
         {
-            var country = await _context.Countries.FindAsync(id);
-            if (country == null)
-            {
-                return NotFound();
-            }
-            return Ok(country);
+            return Ok(action.Result);
         }
+        return BadRequest();
+    }
 
-        [HttpPost]
-        public async Task<IActionResult> PostAsync(Country country)
+    [HttpGet("{id}")]
+    public override async Task<IActionResult> GetAsync(int id)
+    {
+        var response = await _countriesUnitOfWork.GetAsync(id);
+        if (response.WasSuccess)
         {
-            _context.Add(country);
-            await _context.SaveChangesAsync();
-            return Ok(country);
+            return Ok(response.Result);
         }
-
-        [HttpPut]
-        public async Task<IActionResult> PutAsync(Country country)
-        {
-            var currentcountry = await _context.Countries.FindAsync(country.Id);
-            if (currentcountry==null)
-            {
-                return NotFound();
-            }
-
-            currentcountry.Name = country.Name;
-            currentcountry.Code = country.Code;
-            currentcountry.CallingCode = country.CallingCode;
-
-            _context.Update(currentcountry);
-            await _context.SaveChangesAsync();
-            return NoContent();
-        }
-
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAsync(int id)
-        {
-            var currentcountry = await _context.Countries.FindAsync(id);
-            if (currentcountry == null)
-            {
-                return NotFound();
-            }
-
-            _context.Remove(currentcountry);
-            await _context.SaveChangesAsync();
-            return NoContent();
-        }
-
+        return NotFound(response.Message);
     }
 }

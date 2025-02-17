@@ -1,0 +1,68 @@
+﻿@page "/countries"
+
+@if (loading)
+{
+    <Loading />
+}
+else
+{
+    <MudTable Items="@Countries"
+              @ref="table"
+              ServerData="LoadListAsync"
+              Dense="true"
+              Hover="true"
+              Striped="true"
+              FixedHeader="true"
+              FixedFooter="true">
+        <ToolBarContent>
+            <div class="d-flex justify-content-between">
+                <MudText Typo="Typo.h6" Class="me-4"> @L["AppCountries"]</MudText>
+                <MudButton Variant="Variant.Outlined" 
+                           EndIcon="@Icons.Material.Filled.Add" 
+                           Color="Color.Info" OnClick="@(() => ShowModalAsync())">
+                    @L["IUNew"]
+                </MudButton>
+            </div>
+            <MudSpacer />
+            <FilterComponent ApplyFilter="SetFilterValue" />
+        </ToolBarContent>
+        <HeaderContent>
+            <MudTh>@L["AppCountry"]</MudTh>
+            <MudTh>@L["AppCode"]</MudTh>
+            <MudTh>@L["AppCallingCode"]</MudTh>
+@*             <MudTh># @L["AppTeams"]</MudTh> *@
+            <MudTh>@L["IUActions"]</MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd>@context.Name</MudTd>
+            <MudTd>@context.Code</MudTd>
+            <MudTd>@context.CallingCode</MudTd>
+           @* <MudTd>@context.TeamsCount</MudTd> *@
+            <MudTd>
+                <MudTooltip Text="@L["IUEdit"]">
+                    <MudButton Variant="Variant.Filled"
+                               Color="Color.Warning"
+                               OnClick="@(() => ShowModalAsync(context.Id, true))">
+                        <MudIcon Icon="@Icons.Material.Filled.Edit" />
+                    </MudButton>
+                </MudTooltip>
+                <MudTooltip Text="@L["IUDelete"]">
+                    <MudButton Variant="Variant.Filled"
+                               Color="Color.Error"
+                               OnClick="@(() => DeleteAsync(@context))">
+                        <MudIcon Icon="@Icons.Material.Filled.Delete" />
+                    </MudButton>
+                </MudTooltip>
+            </MudTd>
+        </RowTemplate>
+        <NoRecordsContent>
+            <MudText>@L["IUNoRecords"]</MudText>
+        </NoRecordsContent>
+        <PagerContent>
+            <MudTablePager RowsPerPageString=@L["IURecordsNumber"]
+                           PageSizeOptions="pageSizeOptions"
+                           AllItemsText=@L["IUAll"]
+                           InfoFormat="@infoFormat" />
+        </PagerContent>
+    </MudTable>
+}

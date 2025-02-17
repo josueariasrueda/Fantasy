@@ -1,0 +1,669 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AppCountry" xml:space="preserve">
+    <value>País</value>
+  </data>
+  <data name="IUMaxLength" xml:space="preserve">
+    <value>El campo {0} no puede tener más de {1} caracteres.</value>
+  </data>
+  <data name="IURequiredField" xml:space="preserve">
+    <value>El campo {0} es obligatorio.</value>
+  </data>
+  <data name="AppTeam" xml:space="preserve">
+    <value>Equipo</value>
+  </data>
+  <data name="IUImage" xml:space="preserve">
+    <value>Imagen</value>
+  </data>
+  <data name="UserPassword" xml:space="preserve">
+    <value>Contraseña</value>
+  </data>
+  <data name="IULengthField" xml:space="preserve">
+    <value>El campo {0} debe tener entre {2} y {1} carácteres.</value>
+  </data>
+  <data name="UserPasswordAndConfirmationDifferent" xml:space="preserve">
+    <value>La contraseña y la confirmación no son iguales.</value>
+  </data>
+  <data name="UserPasswordConfirm" xml:space="preserve">
+    <value>Confirmación de contraseña</value>
+  </data>
+  <data name="UserEmail" xml:space="preserve">
+    <value>Correo electrónico</value>
+  </data>
+  <data name="UserValidEmail" xml:space="preserve">
+    <value>Debes ingresar un correo válido.</value>
+  </data>
+  <data name="IUMinLength" xml:space="preserve">
+    <value>El campo {0} debe tener al menos {1} carácteres.</value>
+  </data>
+  <data name="IUAbout" xml:space="preserve">
+    <value>Acerca de</value>
+  </data>
+  <data name="IUCancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="IUConfirmation" xml:space="preserve">
+    <value>Confirmación</value>
+  </data>
+  <data name="AppCountries" xml:space="preserve">
+    <value>Paises</value>
+  </data>
+  <data name="IUCreate" xml:space="preserve">
+    <value>Crear</value>
+  </data>
+  <data name="IUDelete" xml:space="preserve">
+    <value>Borrar</value>
+  </data>
+  <data name="IUDeleteConfirm" xml:space="preserve">
+    <value>¿Está seguro de borrar el {0}: {1}?</value>
+  </data>
+  <data name="IUEdit" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="ERR001" xml:space="preserve">
+    <value>Registro no encontrado.</value>
+  </data>
+  <data name="ERR002" xml:space="preserve">
+    <value>No se puede borrar, porque tiene registros relacionados.</value>
+  </data>
+  <data name="ERR003" xml:space="preserve">
+    <value>Ya existe el registro que estas intentando crear.</value>
+  </data>
+  <data name="IUError" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="IUHome" xml:space="preserve">
+    <value>Inicio</value>
+  </data>
+  <data name="IULeaveAndLoseChanges" xml:space="preserve">
+    <value>¿Deseas abandonar la página y perder los cambios?</value>
+  </data>
+  <data name="IUNew" xml:space="preserve">
+    <value>Nuevo</value>
+  </data>
+  <data name="IUNoRecords" xml:space="preserve">
+    <value>No hay registros para mostrar...</value>
+  </data>
+  <data name="IURecordCreatedOk" xml:space="preserve">
+    <value>Registro creado con éxito.</value>
+  </data>
+  <data name="IURecordDeletedOk" xml:space="preserve">
+    <value>Registro borrado con éxito.</value>
+  </data>
+  <data name="IURecordSavedOk" xml:space="preserve">
+    <value>Registro guardado con éxito.</value>
+  </data>
+  <data name="IUReturn" xml:space="preserve">
+    <value>Regresar</value>
+  </data>
+  <data name="IUSaveChanges" xml:space="preserve">
+    <value>Guardar Cambios</value>
+  </data>
+  <data name="IUSubtitle" xml:space="preserve">
+    <value>Aplicación de pronosticos futboleros</value>
+  </data>
+  <data name="IUTitle" xml:space="preserve">
+    <value>Polla</value>
+  </data>
+  <data name="IUYes" xml:space="preserve">
+    <value>Sí</value>
+  </data>
+  <data name="ERR004" xml:space="preserve">
+    <value>El código del país no es válido.</value>
+  </data>
+  <data name="ERR005" xml:space="preserve">
+    <value>El código del equipo no es válido.</value>
+  </data>
+  <data name="AppTeams" xml:space="preserve">
+    <value>Equipos</value>
+  </data>
+  <data name="AppSelectACountry" xml:space="preserve">
+    <value>-- Selecciona un País --</value>
+  </data>
+  <data name="IUNo" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="IURecordsNumber" xml:space="preserve">
+    <value>Número de Registros:</value>
+  </data>
+  <data name="IUAll" xml:space="preserve">
+    <value>Todos</value>
+  </data>
+  <data name="IUSearch" xml:space="preserve">
+    <value>Buscar...</value>
+  </data>
+  <data name="IUFilter" xml:space="preserve">
+    <value>Filtrar</value>
+  </data>
+  <data name="IUClean" xml:space="preserve">
+    <value>Limpiar</value>
+  </data>
+  <data name="IUActions" xml:space="preserve">
+    <value>Acciones</value>
+  </data>
+  <data name="UserAdmin" xml:space="preserve">
+    <value>Administrador</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>Usuario</value>
+  </data>
+  <data name="UserFirstName" xml:space="preserve">
+    <value>Nombres</value>
+  </data>
+  <data name="UserLastName" xml:space="preserve">
+    <value>Apellidos</value>
+  </data>
+  <data name="UserType" xml:space="preserve">
+    <value>Tipo de Usuario</value>
+  </data>
+  <data name="IUNotFound" xml:space="preserve">
+    <value>No Encontrado</value>
+  </data>
+  <data name="IUNothingInRoute" xml:space="preserve">
+    <value>Lo sentimos no hay nada en esta ruta.</value>
+  </data>
+  <data name="IUAuthorizing" xml:space="preserve">
+    <value>Autorizando...</value>
+  </data>
+  <data name="UserNotAuthorized" xml:space="preserve">
+    <value>No estas autorizado para ver este contenido...</value>
+  </data>
+  <data name="IUHello" xml:space="preserve">
+    <value>Hola</value>
+  </data>
+  <data name="UserLogout" xml:space="preserve">
+    <value>Cerrar Sesión</value>
+  </data>
+  <data name="UserNewRegister" xml:space="preserve">
+    <value>Regitrarse como nuevo usuario</value>
+  </data>
+  <data name="UserLogin" xml:space="preserve">
+    <value>Iniciar Sesión</value>
+  </data>
+  <data name="UserNotUserYet" xml:space="preserve">
+    <value>¿No eres usuario aún? Resgitrate aquí</value>
+  </data>
+  <data name="UserLogoutConfirm" xml:space="preserve">
+    <value>¿Estás seguro que deseas cerrar sesión?</value>
+  </data>
+  <data name="UserLogoutMessage" xml:space="preserve">
+    <value>Si cierras sesión, tendrás que volver a iniciar sesión para acceder a tu cuenta.</value>
+  </data>
+  <data name="UserEditUserProfile" xml:space="preserve">
+    <value>Editar Perfil de Usuario</value>
+  </data>
+  <data name="ERR007" xml:space="preserve">
+    <value>Ha superado el máximo número de intentos, su cuenta está bloqueada, intente de nuevo en 5 minutos.</value>
+  </data>
+  <data name="ERR006" xml:space="preserve">
+    <value>Email o contraseña incorrectos.</value>
+  </data>
+  <data name="ERR008" xml:space="preserve">
+    <value>El usuario no ha sido habilitado, debes de seguir las instrucciones del correo enviado para poder habilitar el usuario.</value>
+  </data>
+  <data name="UserConfirmedEmailMessage" xml:space="preserve">
+    <value>Gracias por confirmar su email, ahora puedes ingresar al sistema.</value>
+  </data>
+  <data name="UserConfirmEmail" xml:space="preserve">
+    <value>Confirmación de email</value>
+  </data>
+  <data name="UserConfirmEmailMessage" xml:space="preserve">
+    <value>Presione el botón para confirmar su cuenta.</value>
+  </data>
+  <data name="UserAdminRegister" xml:space="preserve">
+    <value>Registro de Administrador</value>
+  </data>
+  <data name="UserRegister" xml:space="preserve">
+    <value>Registro de Usuario</value>
+  </data>
+  <data name="UserSendEmailConfirmationMessage" xml:space="preserve">
+    <value>Su cuenta ha sido creada con exito. Se te ha enviado un correo electrónico con las instrucciones para activar tu usuario.</value>
+  </data>
+  <data name="UserPhoneNumber" xml:space="preserve">
+    <value>Número de teléfono</value>
+  </data>
+  <data name="IUPleaseWait" xml:space="preserve">
+    <value>Por favor espera...</value>
+  </data>
+  <data name="UserEmailAlreadyExists" xml:space="preserve">
+    <value>El correo que ingresaste ya existe.</value>
+  </data>
+  <data name="IUSend" xml:space="preserve">
+    <value>Enviar</value>
+  </data>
+  <data name="UserMailForwarding" xml:space="preserve">
+    <value>Reenvío de correo</value>
+  </data>
+  <data name="UserResendAccountActivationEmail" xml:space="preserve">
+    <value>Reenviar correro de activación de cuenta</value>
+  </data>
+  <data name="UserCurrentPassword" xml:space="preserve">
+    <value>Contraseña Actual</value>
+  </data>
+  <data name="UserNewPassword" xml:space="preserve">
+    <value>Nueva Contraseña</value>
+  </data>
+  <data name="UserPasswordChangedSuccessfully" xml:space="preserve">
+    <value>Contraseña Modificada con éxito.</value>
+  </data>
+  <data name="UserChangePassword" xml:space="preserve">
+    <value>Cambiar Contraseña</value>
+  </data>
+  <data name="UserRecoverPasswordMessage" xml:space="preserve">
+    <value>Se te ha enviado un correo electrónico con las instrucciones para recuperar su contraseña.</value>
+  </data>
+  <data name="UserPasswordRecoveredMessage" xml:space="preserve">
+    <value>Contraseña cambiada con éxito, ahora puede ingresar con su nueva contraseña.</value>
+  </data>
+  <data name="UserPasswordRecovery" xml:space="preserve">
+    <value>Recuperación de Contraseña</value>
+  </data>
+  <data name="UserForgottenYourPassword" xml:space="preserve">
+    <value>¿Has olvidado tu contraseña?</value>
+  </data>
+  <data name="AppTournament" xml:space="preserve">
+    <value>Torneo</value>
+  </data>
+  <data name="AppTournaments" xml:space="preserve">
+    <value>Torneos</value>
+  </data>
+  <data name="IUIsActive" xml:space="preserve">
+    <value>Está Activo</value>
+  </data>
+  <data name="IURemarks" xml:space="preserve">
+    <value>Comentarios</value>
+  </data>
+  <data name="ERR009" xml:space="preserve">
+    <value>El código de torneo no es válido.</value>
+  </data>
+  <data name="AppTournamentActive" xml:space="preserve">
+    <value>El torneo está activo</value>
+  </data>
+  <data name="AppTournamentInactive" xml:space="preserve">
+    <value>El torneo está inactivo</value>
+  </data>
+  <data name="IUActivate" xml:space="preserve">
+    <value>Activar</value>
+  </data>
+  <data name="IUDeactivate" xml:space="preserve">
+    <value>Desactivar</value>
+  </data>
+  <data name="AppAddTeamToTournament" xml:space="preserve">
+    <value>Adicionar Equipo a Torneo</value>
+  </data>
+  <data name="AppAddTeam" xml:space="preserve">
+    <value>Adicionar Equipo</value>
+  </data>
+  <data name="AppSelectATeam" xml:space="preserve">
+    <value>-- Selecciona un Equipo --</value>
+  </data>
+  <data name="IUDate" xml:space="preserve">
+    <value>Fecha</value>
+  </data>
+  <data name="AppLocal" xml:space="preserve">
+    <value>Local</value>
+  </data>
+  <data name="AppVisitor" xml:space="preserve">
+    <value>Visitante</value>
+  </data>
+  <data name="AppGoalsLocal" xml:space="preserve">
+    <value>Goles del Local</value>
+  </data>
+  <data name="AppGoalsVisitor" xml:space="preserve">
+    <value>Goles del Visitante</value>
+  </data>
+  <data name="ERR010" xml:space="preserve">
+    <value>El código del equipo local no es válido.</value>
+  </data>
+  <data name="ERR011" xml:space="preserve">
+    <value>El código del equipo visitante no es válido.</value>
+  </data>
+  <data name="ERR012" xml:space="preserve">
+    <value>El código del partido no es válido.</value>
+  </data>
+  <data name="AppPollaAddMatchToTournament" xml:space="preserve">
+    <value>Adicionar partido a torneo</value>
+  </data>
+  <data name="AppMatch" xml:space="preserve">
+    <value>Partido</value>
+  </data>
+  <data name="AppMatches" xml:space="preserve">
+    <value>Partidos</value>
+  </data>
+  <data name="AppMatchInactive" xml:space="preserve">
+    <value>El partido está inactivo</value>
+  </data>
+  <data name="AppMatchActive" xml:space="preserve">
+    <value>El partido está activo</value>
+  </data>
+  <data name="IUSelectDate" xml:space="preserve">
+    <value>Seleccione una fecha...</value>
+  </data>
+  <data name="IUSelectTime" xml:space="preserve">
+    <value>Seleccione una hora...</value>
+  </data>
+  <data name="AppMustSelectLocalTeam" xml:space="preserve">
+    <value>Debe seleccionar un equipo local.</value>
+  </data>
+  <data name="AppMustSelectVisitorTeam" xml:space="preserve">
+    <value>Debe seleccionar un equipo visitante.</value>
+  </data>
+  <data name="IUSelectFile" xml:space="preserve">
+    <value>Seleccione un archivo...</value>
+  </data>
+  <data name="AppGroup" xml:space="preserve">
+    <value>Grupo</value>
+  </data>
+  <data name="AppGroups" xml:space="preserve">
+    <value>Grupos</value>
+  </data>
+  <data name="IUCode" xml:space="preserve">
+    <value>Código</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Usuarios</value>
+  </data>
+  <data name="IUAdd" xml:space="preserve">
+    <value>Adicionar</value>
+  </data>
+  <data name="UserConfirmed" xml:space="preserve">
+    <value>Confirmado</value>
+  </data>
+  <data name="ERR013" xml:space="preserve">
+    <value>El código de usuario no es válido.</value>
+  </data>
+  <data name="ERR014" xml:space="preserve">
+    <value>El código del grupo no es válido.</value>
+  </data>
+  <data name="ERR015" xml:space="preserve">
+    <value>El códio de usario grupo no es válido.</value>
+  </data>
+  <data name="ERR016" xml:space="preserve">
+    <value>El código de la predicción no es válido.</value>
+  </data>
+  <data name="AppPoints" xml:space="preserve">
+    <value>Puntos</value>
+  </data>
+  <data name="AppMembers" xml:space="preserve">
+    <value>Miembros</value>
+  </data>
+  <data name="AppGroupDetails" xml:space="preserve">
+    <value>Detalles de Grupo</value>
+  </data>
+  <data name="AppJoinGroup" xml:space="preserve">
+    <value>Unirme a un grupo</value>
+  </data>
+  <data name="IUInactive" xml:space="preserve">
+    <value>Inactivo</value>
+  </data>
+  <data name="AppSelectATournament" xml:space="preserve">
+    <value>-- Seleccione un Torneo --</value>
+  </data>
+  <data name="AppGroupCreated" xml:space="preserve">
+    <value>Se ha creado el grupo: {0}, con el código: {1}, La URL de invitación {2} ha sido copiada al portapapeles, por favor compartala con sus amigos para que se unan a su grupo.</value>
+  </data>
+  <data name="IUActive" xml:space="preserve">
+    <value>Activo</value>
+  </data>
+  <data name="UserAddedToGroupOk" xml:space="preserve">
+    <value>Usuario agregado al grupo. Ya el usuario puede entrar e ingresar sus predicciones.</value>
+  </data>
+  <data name="ERR017" xml:space="preserve">
+    <value>El código del grupo no es válido.</value>
+  </data>
+  <data name="AppJoinExistingGroup" xml:space="preserve">
+    <value>Unirse a un grupo existente</value>
+  </data>
+  <data name="UserConfirmGroupMessage" xml:space="preserve">
+    <value>Para unirse al grupo: {0}, haga click en el botón.</value>
+  </data>
+  <data name="UserCopyInvitationURLTitle" xml:space="preserve">
+    <value>Copiar invitación</value>
+  </data>
+  <data name="AppInvitationURLCopied" xml:space="preserve">
+    <value>Link de invitación al grupo {0} copiado al portapapeles. Compartirlo con sus amigos para que se unan al grupo.</value>
+  </data>
+  <data name="AppPredictions" xml:space="preserve">
+    <value>Predicciones</value>
+  </data>
+  <data name="AppPositions" xml:space="preserve">
+    <value>Posiciones</value>
+  </data>
+  <data name="AppWatch" xml:space="preserve">
+    <value>Mirar</value>
+  </data>
+  <data name="AppPrediction" xml:space="preserve">
+    <value>Predicción</value>
+  </data>
+  <data name="AppCloseMatch" xml:space="preserve">
+    <value>Cerrar Partido</value>
+  </data>
+  <data name="AppCloseMatchConfirmMessage" xml:space="preserve">
+    <value>¿Estás seguro de cerrar el partido {0} Vs. {1}?</value>
+  </data>
+  <data name="AppCloseMatchTitle" xml:space="preserve">
+    <value>Cerrar Partido</value>
+  </data>
+  <data name="AppGoalsLocalError" xml:space="preserve">
+    <value>Debes ingresar un valor mayor o igual a cero en goles del local.</value>
+  </data>
+  <data name="AppGoalsVisitorError" xml:space="preserve">
+    <value>Debes ingresar un valor mayor o igual a cero en goles del visitante.</value>
+  </data>
+  <data name="ERR018" xml:space="preserve">
+    <value>Este partido ya no admite predicciones.</value>
+  </data>
+  <data name="AppRealScore" xml:space="preserve">
+    <value>Marcador Real</value>
+  </data>
+  <data name="AppPredictedScore" xml:space="preserve">
+    <value>Marcador Predecido</value>
+  </data>
+  <data name="AppPredictionsBalance" xml:space="preserve">
+    <value>Resumen de Predicciones</value>
+  </data>
+  <data name="AppAdminUsersGroup" xml:space="preserve">
+    <value>Administrar usuarios de un grupo</value>
+  </data>
+  <data name="IUAboutText" xml:space="preserve">
+    <value>    &lt;p&gt;Sistema donde diferentes grupos de amigos pueden hacer predicciones sobre torneos de fútbol. En Colombia, se le llama “Polla”; en Argentina, “Prode”; y en Estados Unidos, “Fantasy”. La idea es que cualquier número de torneos de fútbol, como la Copa América, el Mundial, la Eurocopa, la Champions League, o el Torneo Colombiano, entre otros, pueda ser registrado. Los grupos de amigos podrán formar sus propias “Pollas” y realizar predicciones sobre los partidos. Una vez completados los partidos y aplicadas las reglas de negocio, el participante que acumule más puntos ganará la “Fantasy”, la “Polla” o como se le denomine en su país.&lt;/p&gt;
+    
+    &lt;p&gt;Cada usuario podrá crear múltiples grupos o unirse a grupos existentes para participar en cualquier torneo de fútbol habilitado por el administrador. El creador del grupo será considerado el administrador de dicho grupo y podrá definir las condiciones para repartir el premio, por ejemplo:&lt;/p&gt;
+    &lt;ul&gt;
+        &lt;li&gt;70% para el primer puesto.&lt;/li&gt;
+        &lt;li&gt;20% para el segundo puesto.&lt;/li&gt;
+        &lt;li&gt;10% para el tercer puesto.&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;br/&gt;
+    &lt;p&gt;El administrador también tendrá la facultad de activar o desactivar a los miembros de su grupo. Por ejemplo, si un miembro no ha pagado el valor correspondiente a la polla, el administrador podrá desactivarlo, y un usuario inactivo no podrá ingresar predicciones.&lt;/p&gt;
+
+    &lt;p&gt;La forma de obtener puntos es la siguiente:&lt;/p&gt;
+    &lt;ul&gt;
+        &lt;li&gt;5 puntos por acertar el ganador o acertar un empate.&lt;/li&gt;
+        &lt;li&gt;2 puntos por acertar los goles del equipo local.&lt;/li&gt;
+        &lt;li&gt;2 puntos por acertar los goles del equipo visitante.&lt;/li&gt;
+        &lt;li&gt;1 punto por acertar la diferencia de goles.&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;br/&gt;
+    &lt;p&gt;El máximo de puntos por partido será 10, en caso de acertar el resultado perfecto. Ten en cuenta las siguientes consideraciones:&lt;/p&gt;
+    &lt;ul&gt;
+        &lt;li&gt;Solo se podrán ingresar o modificar predicciones hasta 10 minutos antes de iniciar un partido.&lt;/li&gt;
+        &lt;li&gt;El resultado se basará en los 90 minutos de tiempo reglamentario más las adiciones. No se tendrán en cuenta los goles en tiempos extra o penales.&lt;/li&gt;
+        &lt;li&gt;Los partidos de segunda ronda en adelante otorgarán el doble de puntos.&lt;/li&gt;
+    &lt;/ul&gt;</value>
+  </data>
+  <data name="IUAuthor" xml:space="preserve">
+    <value>Autor</value>
+  </data>
+  <data name="AppWatchPredictions" xml:space="preserve">
+    <value>Ver Predicciones</value>
+  </data>
+  <data name="AppDoublePoints" xml:space="preserve">
+    <value>Puntaje Doble</value>
+  </data>
+  <data name="AppDoublePointsMatchMessage" xml:space="preserve">
+    <value>Partido de Doble Puntaje</value>
+  </data>
+  <data name="AppSinglePointsMatchMessage" xml:space="preserve">
+    <value>Partido de Puntaje Sencillo</value>
+  </data>
+  <data name="IUIsImageSquare" xml:space="preserve">
+    <value>¿La imagen es cuadrada?</value>
+  </data>
+  <data name="IUImageIsSquare" xml:space="preserve">
+    <value>La imagén es cuadrada</value>
+  </data>
+  <data name="IUImageIsRectangular" xml:space="preserve">
+    <value>La imagén es rectangular</value>
+  </data>
+  <data name="IUSquare" xml:space="preserve">
+    <value>Cuadrada</value>
+  </data>
+  <data name="IURectangular" xml:space="preserve">
+    <value>Rectangular</value>
+  </data>
+  <data name="AppMyGroups" xml:space="preserve">
+    <value>Mis Grupos</value>
+  </data>
+  <data name="AppNoGroups" xml:space="preserve">
+    <value>No perteneces a ningún grupo. Puedes unirte a uno con la URL o el código compartido por el administrador del grupo, o bien, ver los grupos disponibles en la página de inicio y luego pedirle al administrador que te active para poder ingresar tus predicciones. También puedes crear tu propio grupo de amigos.</value>
+  </data>
+  <data name="IUSpanish" xml:space="preserve">
+    <value>Español</value>
+  </data>
+  <data name="IUEnglish" xml:space="preserve">
+    <value>Inglés</value>
+  </data>
+  <data name="AppReOpenMatch" xml:space="preserve">
+    <value>Volver a abrir el partido</value>
+  </data>
+  <data name="AppReOpenMatchConfirm" xml:space="preserve">
+    <value>¿Estás segura de volver a abrir el {0}: {1}?</value>
+  </data>
+  <data name="AppReOpenMatchMessage" xml:space="preserve">
+    <value>El partido ha sido reabierto</value>
+  </data>
+  <data name="AppCode" xml:space="preserve">
+    <value>Código</value>
+  </data>
+  <data name="AppCallingCode" xml:space="preserve">
+    <value>Código Telefónico</value>
+  </data>
+</root>

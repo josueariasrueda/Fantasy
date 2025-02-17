@@ -1,11 +1,16 @@
 using Fantasy.Backend.Data;
+using Fantasy.Backend.Repositories.Implementations;
+using Fantasy.Backend.Repositories.Interfaces;
+using Fantasy.Backend.UnitsOfWork.Implementations;
+using Fantasy.Backend.UnitsOfWork.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Add services to the container. Ignora referencias ciclicas
+builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
-builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 builder.Services.AddSwaggerGen();
@@ -15,6 +20,12 @@ builder.Services.AddDbContext<ApplicationDataContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("ApplicationDataConnection"));
 });
+
+builder.Services.AddScoped(typeof(IGenericUnitOfWork<>), typeof(GenericUnitOfWork<>));
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+
+builder.Services.AddScoped<ICountriesRepository, CountriesRepository>();
+builder.Services.AddScoped<ICountriesUnitOfWork, CountriesUnitOfWork>();
 
 var app = builder.Build();
 
@@ -40,4 +51,12 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
+
+// Cors para adminitir el acceso desde varios lugares
+app.UseCors(builder => builder
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+    .SetIsOriginAllowed(origin => true)
+    .AllowCredentials());
+
 app.Run();
