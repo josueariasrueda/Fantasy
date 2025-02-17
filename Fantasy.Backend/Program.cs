@@ -4,6 +4,7 @@ using Fantasy.Backend.Repositories.Interfaces;
 using Fantasy.Backend.UnitsOfWork.Implementations;
 using Fantasy.Backend.UnitsOfWork.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +21,7 @@ builder.Services.AddDbContext<ApplicationDataContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("ApplicationDataConnection"));
 });
+builder.Services.AddTransient<SeedApplicationDbContext>();
 
 builder.Services.AddScoped(typeof(IGenericUnitOfWork<>), typeof(GenericUnitOfWork<>));
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
@@ -28,6 +30,15 @@ builder.Services.AddScoped<ICountriesRepository, CountriesRepository>();
 builder.Services.AddScoped<ICountriesUnitOfWork, CountriesUnitOfWork>();
 
 var app = builder.Build();
+
+SeedData(app);
+void SeedData(WebApplication app)
+{
+    var scopedFactory = app.Services.GetService<IServiceScopeFactory>();
+    using var scope = scopedFactory!.CreateScope();
+    var service = scope.ServiceProvider.GetService<SeedApplicationDbContext>();
+    service!.SeedAsync().Wait();
+}
 
 // Activa swagger https://localhost:7078/swagger/index.html
 app.Use(async (context, next) =>
