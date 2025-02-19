@@ -10,7 +10,7 @@ using MudBlazor;
 
 namespace Fantasy.Frontend.Pages.Countries;
 
-//[Authorize(Roles = "Admin")]
+[Authorize(Roles = "Admin")]
 public partial class CountriesIndex
 {
     private List<Country>? Countries { get; set; }
