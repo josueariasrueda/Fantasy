@@ -5,6 +5,7 @@ using Fantasy.Shared.DTOs;
 using Fantasy.Shared.Entities;
 using Fantasy.Shared.Responses;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
 
 namespace Fantasy.Backend.Repositories.Implementations;
@@ -117,10 +118,18 @@ public class UsersRepository : IUsersRepository
 
     public async Task<IdentityResult> AddUserAsync(User user, string password)
     {
-        if (!string.IsNullOrEmpty(user.Photo) && !user.Photo.StartsWith("http"))
+        var result = await _userManager.CreateAsync(user, password);
+        return result;
+    }
+
+    public async Task<IdentityResult> AddUserAsync(User user, string password, string localpathphoto)
+    {
+        if (!string.IsNullOrEmpty(localpathphoto) && !localpathphoto.StartsWith("http"))
         {
-            var imageBase64 = Convert.FromBase64String(user.Photo!);
-            user.Photo = await _fileStorage.SaveFileAsync(imageBase64, ".jpg", "users");
+            //var imageBase64 = Convert.FromBase64String(user.Photo!);
+            var fileBytes = File.ReadAllBytes(localpathphoto);
+            var extension = Path.GetExtension(localpathphoto);
+            user.Photo = await _fileStorage.SaveFileAsync(fileBytes, extension, "users");
         }
 
         var result = await _userManager.CreateAsync(user, password);

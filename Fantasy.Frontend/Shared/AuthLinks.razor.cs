@@ -36,12 +36,12 @@ public partial class AuthLinks
     private void ShowModalLogIn()
     {
         var closeOnEscapeKey = new DialogOptions() { CloseOnEscapeKey = true };
-        DialogService.Show<Login>(Localizer["IULogin"], closeOnEscapeKey);
+        DialogService.Show<Login>(Localizer["UserLogin"], closeOnEscapeKey);
     }
 
     private void ShowModalLogOut()
     {
         var closeOnEscapeKey = new DialogOptions() { CloseOnEscapeKey = true };
-        DialogService.Show<Logout>(Localizer["IULogout"], closeOnEscapeKey);
+        DialogService.Show<Logout>(Localizer["UserLogout"], closeOnEscapeKey);
     }
 }

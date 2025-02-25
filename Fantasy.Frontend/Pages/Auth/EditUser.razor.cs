@@ -26,7 +26,7 @@ public partial class EditUser
     [Inject] private ISnackbar Snackbar { get; set; } = null!;
     [Inject] private IRepository Repository { get; set; } = null!;
     [Inject] private ILoginService LoginService { get; set; } = null!;
-    [Inject] private IStringLocalizer<Literals> Localizer { get; set; } = null!;
+    [Inject] private IStringLocalizer<Literals> L { get; set; } = null!;
 
     protected override async Task OnInitializedAsync()
     {
@@ -45,7 +45,7 @@ public partial class EditUser
     private void ShowModal()
     {
         var closeOnEscapeKey = new DialogOptions() { CloseOnEscapeKey = true };
-        DialogService.Show<ChangePassword>(Localizer["ChangePassword"], closeOnEscapeKey);
+        DialogService.Show<ChangePassword>(L["IUChangePassword"], closeOnEscapeKey);
     }
 
     private async Task LoadUserAsyc()
@@ -78,7 +78,7 @@ public partial class EditUser
         if (responseHttp.Error)
         {
             var message = await responseHttp.GetErrorMessageAsync();
-            Snackbar.Add(Localizer[message!], Severity.Error);
+            Snackbar.Add(L[message!], Severity.Error);
             return;
         }
         countries = responseHttp.Response;
@@ -108,12 +108,12 @@ public partial class EditUser
         if (responseHttp.Error)
         {
             var message = await responseHttp.GetErrorMessageAsync();
-            Snackbar.Add(Localizer[message!], Severity.Error);
+            Snackbar.Add(L[message!], Severity.Error);
             return;
         }
 
         await LoginService.LoginAsync(responseHttp.Response!.Token);
-        Snackbar.Add(Localizer["RecordSavedOk"], Severity.Success);
+        Snackbar.Add(L["IURecordSavedOk"], Severity.Success);
         NavigationManager.NavigateTo("/");
     }
 

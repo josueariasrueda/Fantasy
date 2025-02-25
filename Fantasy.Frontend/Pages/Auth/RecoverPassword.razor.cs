@@ -35,6 +35,6 @@ public partial class RecoverPassword
 
         MudDialog.Cancel();
         NavigationManager.NavigateTo("/");
-        Snackbar.Add(Localizer["RecoverPasswordMessage"], Severity.Success);
+        Snackbar.Add(Localizer["UserRecoverPasswordMessage"], Severity.Success);
     }
 }

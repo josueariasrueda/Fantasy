@@ -934,15 +934,6 @@ namespace Fantasy.Shared.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hello.
-        /// </summary>
-        public static string IUHello {
-            get {
-                return ResourceManager.GetString("IUHello", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Home.
         /// </summary>
         public static string IUHome {
@@ -1416,6 +1407,15 @@ namespace Fantasy.Shared.Resources {
         public static string UserForgottenYourPassword {
             get {
                 return ResourceManager.GetString("UserForgottenYourPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hello.
+        /// </summary>
+        public static string UserHello {
+            get {
+                return ResourceManager.GetString("UserHello", resourceCulture);
             }
         }
         

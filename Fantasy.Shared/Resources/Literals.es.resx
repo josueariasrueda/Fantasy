@@ -285,7 +285,7 @@
   <data name="UserNotAuthorized" xml:space="preserve">
     <value>No estas autorizado para ver este contenido...</value>
   </data>
-  <data name="IUHello" xml:space="preserve">
+  <data name="UserHello" xml:space="preserve">
     <value>Hola</value>
   </data>
   <data name="UserLogout" xml:space="preserve">

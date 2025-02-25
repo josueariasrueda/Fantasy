@@ -7,17 +7,19 @@ namespace Fantasy.Shared.DTOs;
 public class UserDTO : User
 {
     [DataType(DataType.Password)]
-    [Display(Name = "Password", ResourceType = typeof(Literals))]
-    [Required(ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(Literals))]
-    [StringLength(20, MinimumLength = 6, ErrorMessageResourceName = "LengthField", ErrorMessageResourceType = typeof(Literals))]
+    [Display(Name = "UserPassword", ResourceType = typeof(Literals))]
+    [Required(ErrorMessageResourceName = "IURequiredField", ErrorMessageResourceType = typeof(Literals))]
+    [StringLength(20, MinimumLength = 6, ErrorMessageResourceName = "IULengthField", ErrorMessageResourceType = typeof(Literals))]
     public string Password { get; set; } = null!;
 
-    [Compare("Password", ErrorMessageResourceName = "PasswordAndConfirmationDifferent", ErrorMessageResourceType = typeof(Literals))]
-    [Display(Name = "PasswordConfirm", ResourceType = typeof(Literals))]
+    [Compare("UserPassword", ErrorMessageResourceName = "UserPasswordAndConfirmationDifferent", ErrorMessageResourceType = typeof(Literals))]
+    [Display(Name = "UserPasswordConfirm", ResourceType = typeof(Literals))]
     [DataType(DataType.Password)]
-    [Required(ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(Literals))]
-    [StringLength(20, MinimumLength = 6, ErrorMessageResourceName = "LengthField", ErrorMessageResourceType = typeof(Literals))]
+    [Required(ErrorMessageResourceName = "IURequiredField", ErrorMessageResourceType = typeof(Literals))]
+    [StringLength(20, MinimumLength = 6, ErrorMessageResourceName = "IULengthField", ErrorMessageResourceType = typeof(Literals))]
     public string PasswordConfirm { get; set; } = null!;
 
     public string Language { get; set; } = null!;
+
+    public string LocalPathPhoto { get; set; } = null!;
 }

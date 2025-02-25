@@ -14,7 +14,7 @@ public partial class ConfirmEmail
     [Inject] private IDialogService DialogService { get; set; } = null!;
     [Inject] private ISnackbar Snackbar { get; set; } = null!;
     [Inject] private IRepository Repository { get; set; } = null!;
-    [Inject] private IStringLocalizer<Literals> Localizer { get; set; } = null!;
+    [Inject] private IStringLocalizer<Literals> L { get; set; } = null!;
 
     [Parameter, SupplyParameterFromQuery] public string UserId { get; set; } = string.Empty;
     [Parameter, SupplyParameterFromQuery] public string Token { get; set; } = string.Empty;
@@ -26,12 +26,12 @@ public partial class ConfirmEmail
         {
             message = await responseHttp.GetErrorMessageAsync();
             NavigationManager.NavigateTo("/");
-            Snackbar.Add(Localizer[message!], Severity.Error);
+            Snackbar.Add(L[message!], Severity.Error);
             return;
         }
 
-        Snackbar.Add(Localizer["ConfirmedEmailMessage"], Severity.Success);
+        Snackbar.Add(L["UserConfirmedEmailMessage"], Severity.Success);
         var closeOnEscapeKey = new DialogOptions() { CloseOnEscapeKey = true };
-        DialogService.Show<Login>(Localizer["Login"], closeOnEscapeKey);
+        DialogService.Show<Login>(L["UserLogin"], closeOnEscapeKey);
     }
 }

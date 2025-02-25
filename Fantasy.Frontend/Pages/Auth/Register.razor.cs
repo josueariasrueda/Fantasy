@@ -6,8 +6,10 @@ using Fantasy.Shared.Entities;
 using Fantasy.Shared.Enums;
 using Fantasy.Shared.Resources;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
 using MudBlazor;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Fantasy.Frontend.Pages.Auth
 {
@@ -94,6 +96,10 @@ namespace Fantasy.Frontend.Pages.Auth
             userDTO.Country = selectedCountry;
             userDTO.CountryId = selectedCountry.Id;
             userDTO.Language = System.Globalization.CultureInfo.CurrentCulture.Name.Substring(0, 2);
+            if (!string.IsNullOrEmpty(imageUrl))
+            {
+                userDTO.LocalPathPhoto = imageUrl;
+            };
 
             if (IsAdmin)
             {
@@ -160,6 +166,23 @@ namespace Fantasy.Frontend.Pages.Auth
             if (selectedCountry.Id == 0)
             {
                 Snackbar.Add(string.Format(Localizer["RequiredField"], string.Format(Localizer["Country"])), Severity.Error);
+                hasErrors = true;
+            }
+
+            if (!string.IsNullOrWhiteSpace(userDTO.LocalPathPhoto))
+            {
+                string[] validExtensions = { ".jpg", ".jpeg", ".png" };
+                string fileExtension = Path.GetExtension(userDTO.LocalPathPhoto).ToLower();
+
+                if (!validExtensions.Contains(fileExtension))
+                {
+                    Snackbar.Add(string.Format(Localizer["InvalidPhotoPath"], string.Format(Localizer["La foto debe ser un archivo JPG, JPEG o PNG."])), Severity.Error);
+                    hasErrors = true;
+                }
+            }
+            else
+            {
+                Snackbar.Add(string.Format(Localizer["EmptyPhotoPath"], string.Format(Localizer["Debe proporcionar una ruta de foto válida."])), Severity.Error);
                 hasErrors = true;
             }
 

@@ -283,7 +283,7 @@ public class AccountsController : ControllerBase
         };
     }
 
-    public async Task<ActionResponse<string>> SendRecoverEmailAsync(User user, string language)
+    private async Task<ActionResponse<string>> SendRecoverEmailAsync(User user, string language)
     {
         var myToken = await _usersUnitOfWork.GeneratePasswordResetTokenAsync(user);
         var tokenLink = Url.Action("ResetPassword", "accounts", new
@@ -299,7 +299,7 @@ public class AccountsController : ControllerBase
         return _mailHelper.SendMail(user.FullName, user.Email!, _configuration["Mail:SubjectRecoveryEn"]!, string.Format(_configuration["Mail:BodyRecoveryEn"]!, tokenLink), language);
     }
 
-    public async Task<ActionResponse<string>> SendConfirmationEmailAsync(User user, string language)
+    private async Task<ActionResponse<string>> SendConfirmationEmailAsync(User user, string language)
     {
         var myToken = await _usersUnitOfWork.GenerateEmailConfirmationTokenAsync(user);
         var tokenLink = Url.Action("ConfirmEmail", "accounts", new

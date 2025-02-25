@@ -16,24 +16,24 @@ else
               FixedFooter="true">
         <ToolBarContent>
             <div class="d-flex justify-content-between">
-                <MudText Typo="Typo.h6" Class="me-4">@Localizer["Users"]</MudText>
+                <MudText Typo="Typo.h6" Class="me-4">@Localizer["UserUsers"]</MudText>
                 <MudButton Variant="Variant.Outlined" 
                            EndIcon="@Icons.Material.Filled.Add" 
                            Color="Color.Info" 
                            Href="/register/?IsAdmin=true">
-                    @Localizer["Users"] @Localizer["Admin"]
+                    @Localizer["UserUsers"] @Localizer["UserAdmin"]
                 </MudButton>
             </div>
             <MudSpacer />
             <FilterComponent ApplyFilter="SetFilterValue" />
         </ToolBarContent>
         <HeaderContent>
-            <MudTh>@Localizer["Image"]</MudTh>
-            <MudTh>@Localizer["User"]</MudTh>
-            <MudTh>@Localizer["PhoneNumber"]</MudTh>
-            <MudTh>@Localizer["Email"]</MudTh>
-            <MudTh>@Localizer["Confirmed"]</MudTh>
-            <MudTh>@Localizer["UserType"]</MudTh>
+            <MudTh>@Localizer["UserImage"]</MudTh>
+            <MudTh>@Localizer["UserUser"]</MudTh>
+            <MudTh>@Localizer["UserPhoneNumber"]</MudTh>
+            <MudTh>@Localizer["UserEmail"]</MudTh>
+            <MudTh>@Localizer["UserConfirmed"]</MudTh>
+            <MudTh>@Localizer["UserUserType"]</MudTh>
         </HeaderContent>
         <RowTemplate>
             <MudTd>
@@ -46,12 +46,12 @@ else
             <MudTd>@context.UserType</MudTd>
         </RowTemplate>
         <NoRecordsContent>
-            <MudText>@Localizer["NoRecords"]</MudText>
+            <MudText>@Localizer["IUNoRecords"]</MudText>
         </NoRecordsContent>
         <PagerContent>
-            <MudTablePager RowsPerPageString=@Localizer["RecordsNumber"]
+            <MudTablePager RowsPerPageString=@Localizer["IURecordsNumber"]
                            PageSizeOptions="pageSizeOptions"
-                           AllItemsText=@Localizer["All"]
+                           AllItemsText=@Localizer["IUAll"]
                            InfoFormat="@infoFormat" />
         </PagerContent>
     </MudTable>

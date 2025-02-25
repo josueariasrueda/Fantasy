@@ -8,27 +8,27 @@ namespace Fantasy.Shared.Entities;
 
 public class User : IdentityUser
 {
-    [Display(Name = "FirstName", ResourceType = typeof(Literals))]
-    [MaxLength(50, ErrorMessageResourceName = "MaxLength", ErrorMessageResourceType = typeof(Literals))]
-    [Required(ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(Literals))]
+    [Display(Name = "UserFirstName", ResourceType = typeof(Literals))]
+    [MaxLength(50, ErrorMessageResourceName = "IUMaxLength", ErrorMessageResourceType = typeof(Literals))]
+    [Required(ErrorMessageResourceName = "IURequiredField", ErrorMessageResourceType = typeof(Literals))]
     public string FirstName { get; set; } = null!;
 
-    [Display(Name = "LastName", ResourceType = typeof(Literals))]
-    [MaxLength(50, ErrorMessageResourceName = "MaxLength", ErrorMessageResourceType = typeof(Literals))]
-    [Required(ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(Literals))]
+    [Display(Name = "UserLastName", ResourceType = typeof(Literals))]
+    [MaxLength(50, ErrorMessageResourceName = "IUMaxLength", ErrorMessageResourceType = typeof(Literals))]
+    [Required(ErrorMessageResourceName = "IURequiredField", ErrorMessageResourceType = typeof(Literals))]
     public string LastName { get; set; } = null!;
 
-    [Display(Name = "Image", ResourceType = typeof(Literals))]
+    [Display(Name = "IUImage", ResourceType = typeof(Literals))]
     public string? Photo { get; set; }
 
     [Display(Name = "UserType", ResourceType = typeof(Literals))]
     public UserType UserType { get; set; }
 
-    [Required(ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(Literals))]
+    [Required(ErrorMessageResourceName = "IURequiredField", ErrorMessageResourceType = typeof(Literals))]
     public Country Country { get; set; } = null!;
 
-    [Display(Name = "Country", ResourceType = typeof(Literals))]
-    [Range(1, int.MaxValue, ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(Literals))]
+    [Display(Name = "AppCountry", ResourceType = typeof(Literals))]
+    [Range(1, int.MaxValue, ErrorMessageResourceName = "IURequiredField", ErrorMessageResourceType = typeof(Literals))]
     public int CountryId { get; set; }
 
     [Display(Name = "User", ResourceType = typeof(Literals))]

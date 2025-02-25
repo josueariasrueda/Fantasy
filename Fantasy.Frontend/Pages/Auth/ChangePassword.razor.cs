@@ -16,7 +16,7 @@ public partial class ChangePassword
     [Inject] private IDialogService DialogService { get; set; } = null!;
     [Inject] private ISnackbar Snackbar { get; set; } = null!;
     [Inject] private IRepository Repository { get; set; } = null!;
-    [Inject] private IStringLocalizer<Literals> Localizer { get; set; } = null!;
+    [Inject] private IStringLocalizer<Literals> L { get; set; } = null!;
     [CascadingParameter] private IMudDialogInstance MudDialog { get; set; } = null!;
 
     private async Task ChangePasswordAsync()
@@ -27,13 +27,13 @@ public partial class ChangePassword
         if (responseHttp.Error)
         {
             var message = await responseHttp.GetErrorMessageAsync();
-            Snackbar.Add(Localizer[message!], Severity.Error);
+            Snackbar.Add(L[message!], Severity.Error);
             return;
         }
 
         MudDialog.Cancel();
         NavigationManager.NavigateTo("/EditUser");
-        Snackbar.Add(Localizer["PasswordChangedSuccessfully"], Severity.Success);
+        Snackbar.Add(L["UserPasswordChangedSuccessfully"], Severity.Success);
     }
 
     private void ReturnAction()

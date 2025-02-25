@@ -14,7 +14,7 @@ public partial class Loading
         base.OnParametersSet();
         if (string.IsNullOrEmpty(Label))
         {
-            Label = Localizer["PleaseWait"];
+            Label = Localizer["IUPleaseWait"];
         }
     }
 }
