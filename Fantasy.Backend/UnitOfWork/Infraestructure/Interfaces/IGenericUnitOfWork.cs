@@ -1,7 +1,7 @@
 ﻿using Fantasy.Shared.DTOs;
 using Fantasy.Shared.Responses;
 
-namespace Fantasy.Backend.UnitsOfWork.Interfaces;
+namespace Fantasy.Backend.UnitOfWork.Infraestructure.Interfaces;
 
 public interface IGenericUnitOfWork<T> where T : class
 {

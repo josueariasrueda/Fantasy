@@ -217,10 +217,10 @@
     <value>Guardar Cambios</value>
   </data>
   <data name="IUSubtitle" xml:space="preserve">
-    <value>Aplicación de pronosticos futboleros</value>
+    <value>Gestión integral de la Construcción</value>
   </data>
   <data name="IUTitle" xml:space="preserve">
-    <value>Polla</value>
+    <value>ControlBIM</value>
   </data>
   <data name="IUYes" xml:space="preserve">
     <value>Sí</value>
@@ -665,5 +665,8 @@
   </data>
   <data name="AppCallingCode" xml:space="preserve">
     <value>Código Telefónico</value>
+  </data>
+  <data name="UserImage" xml:space="preserve">
+    <value>Image</value>
   </data>
 </root>

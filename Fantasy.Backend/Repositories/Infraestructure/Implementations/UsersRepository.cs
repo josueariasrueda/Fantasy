@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
 
-namespace Fantasy.Backend.Repositories.Implementations;
+namespace Fantasy.Backend.Repositories.Infraestructure.Implementation;
 
 public class UsersRepository : IUsersRepository
 {
@@ -17,14 +17,16 @@ public class UsersRepository : IUsersRepository
     private readonly RoleManager<IdentityRole> _roleManager;
     private readonly SignInManager<User> _signInManager;
     private readonly IFileStorage _fileStorage;
+    private readonly IFileService _fileService;
 
-    public UsersRepository(ApplicationDataContext context, UserManager<User> userManager, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager, IFileStorage fileStorage)
+    public UsersRepository(ApplicationDataContext context, UserManager<User> userManager, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager, IFileStorage fileStorage, IFileService fileService)
     {
         _context = context;
         _userManager = userManager;
         _roleManager = roleManager;
         _signInManager = signInManager;
         _fileStorage = fileStorage;
+        _fileService = fileService;
     }
 
     public async Task<ActionResponse<IEnumerable<User>>> GetAsync(PaginationDTO pagination)
@@ -126,10 +128,7 @@ public class UsersRepository : IUsersRepository
     {
         if (!string.IsNullOrEmpty(localpathphoto) && !localpathphoto.StartsWith("http"))
         {
-            //var imageBase64 = Convert.FromBase64String(user.Photo!);
-            var fileBytes = File.ReadAllBytes(localpathphoto);
-            var extension = Path.GetExtension(localpathphoto);
-            user.Photo = await _fileStorage.SaveFileAsync(fileBytes, extension, "users");
+            user.Photo = await _fileService.SaveUserPhotoAsync(localpathphoto);
         }
 
         var result = await _userManager.CreateAsync(user, password);

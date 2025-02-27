@@ -18,20 +18,20 @@ public partial class Login
     [Inject] private ISnackbar Snackbar { get; set; } = null!;
     [Inject] private IRepository Repository { get; set; } = null!;
     [Inject] private ILoginService LoginService { get; set; } = null!;
-    [Inject] private IStringLocalizer<Literals> Localizer { get; set; } = null!;
+    [Inject] private IStringLocalizer<Literals> L { get; set; } = null!;
 
     [CascadingParameter] private IMudDialogInstance MudDialog { get; set; } = null!;
 
     private void ShowModalRecoverPassword()
     {
         var closeOnEscapeKey = new DialogOptions() { CloseOnEscapeKey = true, MaxWidth = MaxWidth.ExtraLarge };
-        DialogService.Show<RecoverPassword>(Localizer["PasswordRecovery"], closeOnEscapeKey);
+        DialogService.Show<RecoverPassword>(L["PasswordRecovery"], closeOnEscapeKey);
     }
 
     private void ShowModalResendConfirmationEmail()
     {
         var closeOnEscapeKey = new DialogOptions() { CloseOnEscapeKey = true, MaxWidth = MaxWidth.ExtraLarge };
-        DialogService.Show<ResendConfirmationEmailToken>(Localizer["MailForwarding"], closeOnEscapeKey);
+        DialogService.Show<ResendConfirmationEmailToken>(L["MailForwarding"], closeOnEscapeKey);
     }
 
     private void CloseModal()
@@ -52,11 +52,17 @@ public partial class Login
         if (responseHttp.Error)
         {
             var message = await responseHttp.GetErrorMessageAsync();
-            Snackbar.Add(Localizer[message!], Severity.Error);
+            Snackbar.Add(L[message!], Severity.Error);
             return;
         }
 
         await LoginService.LoginAsync(responseHttp.Response!.Token);
         NavigationManager.NavigateTo("/");
+    }
+
+    private async Task LLenarCredenciales()
+    {
+        loginDTO.Email = "bm.zulu@yopmail.com";
+        loginDTO.Password = "123456";
     }
 }

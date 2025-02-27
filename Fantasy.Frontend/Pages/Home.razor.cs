@@ -28,7 +28,7 @@ public partial class Home
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
-        await LoadGroupsAsync();
+        //await LoadGroupsAsync();
         selectedLanguage = LanguageService.CurrentLanguage;
     }
 
@@ -38,16 +38,16 @@ public partial class Home
         NavigationManager.NavigateTo(NavigationManager.Uri, forceLoad: true);
     }
 
-    private async Task LoadGroupsAsync()
-    {
-        var url = $"{baseUrl}/all";
-        var responseHttp = await Repository.GetAsync<List<Group>>(url);
-        if (responseHttp.Error)
-        {
-            var message = await responseHttp.GetErrorMessageAsync();
-            Snackbar.Add(L[message!], Severity.Error);
-            return;
-        }
-        Groups = responseHttp.Response;
-    }
+    //private async Task LoadGroupsAsync()
+    //{
+    //    var url = $"{baseUrl}/all";
+    //    var responseHttp = await Repository.GetAsync<List<Group>>(url);
+    //    if (responseHttp.Error)
+    //    {
+    //        var message = await responseHttp.GetErrorMessageAsync();
+    //        Snackbar.Add(L[message!], Severity.Error);
+    //        return;
+    //    }
+    //    Groups = responseHttp.Response;
+    //}
 }

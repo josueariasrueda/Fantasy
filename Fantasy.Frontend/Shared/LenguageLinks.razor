@@ -1,0 +1,18 @@
+﻿
+<MudContainer Style="width: 6rem; margin-top: 2rem; margin-bottom: 2rem;">
+    <MudPaper Elevation="1" Class="d-flex justify-content-center align-content-center">
+        <MudStack>
+            <MudTooltip Text="@L["IUSpanish"]">
+                <MudButton OnClick="@(() => ChangeLanguage("es"))">
+                    <MudImage Src="/images/Spain.png" Width="30" Height="30" Style="border-radius: 50%;" />
+                </MudButton>
+            </MudTooltip>
+            <MudTooltip Text="@L["IUEnglish"]">
+                <MudButton OnClick="@(() => ChangeLanguage("en"))">
+                    <MudImage Src="/images/United Kingdom.png" Width="30" Height="30" Style="border-radius: 50%;" />
+                </MudButton>
+            </MudTooltip>
+        </MudStack>
+    </MudPaper>
+
+</MudContainer>

@@ -3,7 +3,7 @@ using Fantasy.Shared.Entities;
 using Fantasy.Shared.Responses;
 using Microsoft.AspNetCore.Identity;
 
-namespace Fantasy.Backend.UnitsOfWork.Interfaces;
+namespace Fantasy.Backend.UnitOfWork.Infraestructure.Interfaces;
 
 public interface IUsersUnitOfWork
 {
@@ -28,6 +28,8 @@ public interface IUsersUnitOfWork
     Task<IdentityResult> ConfirmEmailAsync(User user, string token);
 
     Task<IdentityResult> AddUserAsync(User user, string password);
+
+    Task<IdentityResult> AddUserAsync(User user, string password, string localpathphoto);
 
     Task CheckRoleAsync(string roleName);
 

@@ -1,9 +1,9 @@
-﻿using Fantasy.Backend.Repositories.Interfaces;
-using Fantasy.Backend.UnitsOfWork.Interfaces;
+﻿using Fantasy.Backend.Repositories.Domain.Interfaces;
+using Fantasy.Backend.UnitOfWork.Infraestructure.Interfaces;
 using Fantasy.Shared.DTOs;
 using Fantasy.Shared.Responses;
 
-namespace Fantasy.Backend.UnitsOfWork.Implementations;
+namespace Fantasy.Backend.UnitOfWork.Infraestructure.Implementatios;
 
 public class GenericUnitOfWork<T> : IGenericUnitOfWork<T> where T : class
 {

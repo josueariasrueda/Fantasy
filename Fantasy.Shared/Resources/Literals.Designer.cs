@@ -1231,7 +1231,7 @@ namespace Fantasy.Shared.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Soccer predictions app.
+        ///   Looks up a localized string similar to Integral construction .
         /// </summary>
         public static string IUSubtitle {
             get {
@@ -1240,7 +1240,7 @@ namespace Fantasy.Shared.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fantasy.
+        ///   Looks up a localized string similar to ControlBIM.
         /// </summary>
         public static string IUTitle {
             get {
@@ -1416,6 +1416,15 @@ namespace Fantasy.Shared.Resources {
         public static string UserHello {
             get {
                 return ResourceManager.GetString("UserHello", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image.
+        /// </summary>
+        public static string UserImage {
+            get {
+                return ResourceManager.GetString("UserImage", resourceCulture);
             }
         }
         

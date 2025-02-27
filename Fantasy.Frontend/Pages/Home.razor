@@ -4,27 +4,10 @@
 
 <MudPaper Class="p-4 my-4">
     <MudStack Row Justify="Justify.SpaceBetween">
-        <MudStack>
-            <MudText Typo="Typo.h3">@L["IUTitle"]</MudText>
-            <MudText Typo="Typo.h5">@L["IUSubtitle"]</MudText>
-        </MudStack>
-
-        <MudStack Row Justify="Justify.FlexEnd">
-            <MudTooltip Text="@L["IUSpanish"]">
-                <MudButton OnClick="@(() => ChangeLanguage("es"))">
-                    <MudImage Src="/images/Spain.png" Width="50" Height="50" Style="border-radius: 50%;" />
-                </MudButton>
-            </MudTooltip>
-            <MudTooltip Text="@L["IUEnglish"]">
-                <MudButton OnClick="@(() => ChangeLanguage("en"))">
-                    <MudImage Src="/images/United Kingdom.png" Width="50" Height="50" Style="border-radius: 50%;" />
-                </MudButton>
-            </MudTooltip>
-        </MudStack>
+            <MudText Typo="Typo.h6">@L["IUTitle"]</MudText>
+            <MudText Typo="Typo.subtitle2">@L["IUSubtitle"]</MudText>
     </MudStack>
 </MudPaper>
 
 <MudContainer MaxWidth="MaxWidth.Large">
-
-  
 </MudContainer>

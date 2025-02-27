@@ -30,6 +30,7 @@ namespace Fantasy.Frontend.Pages.Auth
         [Inject] private SweetAlertService SweetAlertService { get; set; } = null!;
         [Inject] private IRepository Repository { get; set; } = null!;
         [Inject] private IStringLocalizer<Literals> Localizer { get; set; } = null!;
+
         [Parameter, SupplyParameterFromQuery] public bool IsAdmin { get; set; }
 
         protected override async Task OnInitializedAsync()
@@ -99,7 +100,8 @@ namespace Fantasy.Frontend.Pages.Auth
             if (!string.IsNullOrEmpty(imageUrl))
             {
                 userDTO.LocalPathPhoto = imageUrl;
-            };
+            }
+            ;
 
             if (IsAdmin)
             {

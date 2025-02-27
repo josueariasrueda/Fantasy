@@ -1,11 +1,11 @@
 ﻿using Fantasy.Backend.Repositories.Interfaces;
-using Fantasy.Backend.UnitsOfWork.Interfaces;
+using Fantasy.Backend.UnitOfWork.Infraestructure.Interfaces;
 using Fantasy.Shared.DTOs;
 using Fantasy.Shared.Entities;
 using Fantasy.Shared.Responses;
 using Microsoft.AspNetCore.Identity;
 
-namespace Fantasy.Backend.UnitsOfWork.Implementations;
+namespace Fantasy.Backend.UnitOfWork.Infraestructure.Implementatios;
 
 public class UsersUnitOfWork : IUsersUnitOfWork
 {
@@ -35,7 +35,7 @@ public class UsersUnitOfWork : IUsersUnitOfWork
     public async Task<IdentityResult> ConfirmEmailAsync(User user, string token) => await _usersRepository.ConfirmEmailAsync(user, token);
 
     public async Task<IdentityResult> AddUserAsync(User user, string password) => await _usersRepository.AddUserAsync(user, password);
-
+    public async Task<IdentityResult> AddUserAsync(User user, string password, string localpathphoto) => await _usersRepository.AddUserAsync(user, password, localpathphoto);
     public async Task AddUserToRoleAsync(User user, string roleName) => await _usersRepository.AddUserToRoleAsync(user, roleName);
 
     public async Task CheckRoleAsync(string roleName) => await _usersRepository.CheckRoleAsync(roleName);

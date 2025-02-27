@@ -3,17 +3,17 @@
 <MudStack AlignItems="AlignItems.Center" JustifyContent="JustifyContent.Center" Spacing="3">
     <MudCard Class="p-4">
         <MudStack AlignItems="AlignItems.Center" JustifyContent="JustifyContent.Center">
-            <MudText Typo="Typo.h2" Class="me-4" Color="Color.Primary">@Localizer["IUTitle"]</MudText>
+
+            <MudText Typo="Typo.h2" Class="me-4" Color="Color.Primary">@L["IUTitle"]</MudText>
             <MudImage Src="images/Logo.png" Width="200" Class="p-3" />
-            <MudText Typo="Typo.h1">
-                @((MarkupString)Localizer["IUAboutText"].ToString())
+            <MudText Typo="Typo.body1">
+                @((MarkupString)L["IUAboutText"].ToString())
             </MudText>
-            <MudText Typo="Typo.h3" Color="Color.Secondary" Class="my-3">@Localizer["IUAuthor"]</MudText>
+
         </MudStack>
         <MudStack AlignItems="AlignItems.Center" JustifyContent="JustifyContent.Center" Spacing="2">
             <MudCard Class="card">
-                <MudImage Src="images/JuanZuluaga.jpg" Width="250" Height="250" />
-                <MudText Typo="Typo.h5" Class="centered-text p-2">Juan Zuluaga</MudText>
+                <MudImage Src="images/Logo.jpg" Width="250" />
             </MudCard>
         </MudStack>
     </MudCard>

@@ -2,7 +2,7 @@
 using Fantasy.Shared.Entities;
 using Fantasy.Shared.Responses;
 
-namespace Fantasy.Backend.Repositories.Interfaces;
+namespace Fantasy.Backend.Repositories.Domain.Interfaces;
 
 public interface ICountriesRepository
 {

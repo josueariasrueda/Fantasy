@@ -1,30 +1,37 @@
 ﻿<AuthorizeView>
     <Authorized>
+
         <MudContainer Style="width: 18rem; margin-top: 2rem; margin-bottom: 2rem;">
-            @if (!string.IsNullOrEmpty(photoUser))
-            {
-                <MudContainer Class="d-flex justify-content-center mb-3">
-                    <MudBadge Color="Color.Success" Overlap="true" Bordered="true" Class="position-relative">
-                        <MudAvatar Size="Size.Large" Class="mb-3 mx-auto d-block">
-                            <MudImage Src="@photoUser"></MudImage>
-                        </MudAvatar>
-                    </MudBadge>
-                </MudContainer>
-            }
-            <MudText Typo="Typo.body1" Align="Align.Center">@Localizer["UserHello"], @context.User.Identity!.Name</MudText>
             <MudPaper Elevation="1" Class="d-flex justify-content-center align-content-center">
-                <MudStack Spacing="2">
-                    <MudButton Variant="Variant.Text" OnClick="EditAction">@Localizer["UserEditUserProfile"] <MudIcon Icon="@Icons.Material.Filled.Person" /> </MudButton>
-                    <MudButton Variant="Variant.Text" OnClick="ShowModalLogOut">@Localizer["UserLogout"] <MudIcon Icon="@Icons.Material.Filled.Login" /> </MudButton>
+                @if (!string.IsNullOrEmpty(photoUser))
+                {
+                    <MudContainer Class="d-flex justify-content-center mb-3">
+                        <MudBadge Color="Color.Success" Overlap="true" Bordered="true" Class="position-relative">
+                            <MudAvatar Size="Size.Large" Class="mb-3 mx-auto d-block">
+                                <MudImage Src="@photoUser"> </MudImage>
+                            </MudAvatar>
+                        </MudBadge>
+                    </MudContainer>
+                }
+            </MudPaper>
+            <MudPaper Elevation="1" Class="d-flex justify-content-center align-content-center">
+                <MudText Typo="Typo.body1" Align="Align.Center">@L["UserHello"], @context.User.Identity!.Name</MudText>
+            </MudPaper>
+            <MudPaper Elevation="1" Class="d-flex justify-content-center align-content-center">
+                <MudStack Spacing="1">
+                    <MudButton Variant="Variant.Text" OnClick="EditAction">@L["UserEditUserProfile"] <MudIcon Icon="@Icons.Material.Filled.Person" /> </MudButton>
+                    <MudButton Variant="Variant.Text" OnClick="ShowModalLogOut">@L["UserLogout"] <MudIcon Icon="@Icons.Material.Filled.Login" /> </MudButton>
                 </MudStack>
             </MudPaper>
         </MudContainer>
     </Authorized>
     <NotAuthorized>
         <MudContainer Style="width: 18rem; margin-top: 2rem; margin-bottom: 2rem;">
-            <MudStack Spacing="2">
-                <a href="/register" class="nav-link btn btn-link">@Localizer["UserRegister"] <MudIcon Icon="@Icons.Material.Filled.HowToReg" /></a>
-                <MudMenuItem OnClick="ShowModalLogIn">@Localizer["UserLogin"] <MudIcon Icon="@Icons.Material.Filled.Login" /> </MudMenuItem>
+            <MudStack Class="d-flex justify-center flex-grow-1 gap-4"  AlignItems="AlignItems.Center" Spacing="2">
+                <a href="/register"  class="nav-link btn btn-link">@L["UserRegister"] <MudIcon Icon="@Icons.Material.Filled.HowToReg" /></a>
+                <MudPaper Elevation="1" Class="d-flex justify-content-center align-content-center">
+                    <MudMenuItem OnClick="ShowModalLogIn">@L["UserLogin"] <MudIcon Icon="@Icons.Material.Filled.Login" /> </MudMenuItem>
+                </MudPaper>
             </MudStack>
         </MudContainer>
     </NotAuthorized>

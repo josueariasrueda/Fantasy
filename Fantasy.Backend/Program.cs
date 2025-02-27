@@ -2,10 +2,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using Fantasy.Backend.Data;
 using Fantasy.Backend.Helpers;
-using Fantasy.Backend.Repositories.Implementations;
 using Fantasy.Backend.Repositories.Interfaces;
-using Fantasy.Backend.UnitsOfWork.Implementations;
-using Fantasy.Backend.UnitsOfWork.Interfaces;
 using Fantasy.Shared.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -13,6 +10,15 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Diagnostics.CodeAnalysis;
+using Fantasy.Backend.Repositories.Infraestructure.Implementation;
+using Fantasy.Backend.Repositories.Domain.Implementations;
+using Fantasy.Backend.Repositories.Domain.Interfaces;
+using Fantasy.Backend.UnitOfWork.Infraestructure.Implementatios;
+using Fantasy.Backend.UnitOfWork.Infraestructure.Interfaces;
+using Fantasy.Backend.Repositories.Infraestructure.Interfaces;
+using Fantasy.Backend.Middlewares;
+using Fantasy.Backend.UnitOfWork.Domain.Implementations;
+using Fantasy.Backend.UnitOfWork.Domain.Interfaces;
 
 [ExcludeFromCodeCoverage(Justification = "It is a wrapper used to test other classes. There is no way to prove it.")]
 internal class Program
@@ -56,6 +62,13 @@ internal class Program
           }
                 });
         });
+
+        // Tenant
+        builder.Services.AddHttpContextAccessor();
+        builder.Services.AddScoped<ICurrentTenant, CurrentTenant>();
+
+        // Agregar configuración desde appsettings.json
+        builder.Services.AddScoped<IFileService, FileService>();
 
         // Inyeccion de dependencia para la base de datos
         builder.Services.AddDbContext<ApplicationDataContext>(x => x.UseSqlServer("name=ApplicationDataConnection"));
@@ -118,12 +131,15 @@ internal class Program
             app.UseSwaggerUI();    // Serve Swagger UI for interactive API documentation
         }
 
+        app.UseStaticFiles(); // Para servir archivos estáticos
         app.UseCors(x => x
             .AllowAnyMethod()
             .AllowAnyHeader()
             .SetIsOriginAllowed(origin => true)
             .AllowCredentials());
 
+        app.UseMiddleware<TenantMiddleware>(); // Middleware de tenant
+        app.UseRouting();
         app.UseHttpsRedirection();
         app.UseAuthorization();
         app.MapControllers();

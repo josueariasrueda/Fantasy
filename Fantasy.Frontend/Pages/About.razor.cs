@@ -6,5 +6,5 @@ namespace Fantasy.Frontend.Pages;
 
 public partial class About
 {
-    [Inject] private IStringLocalizer<Literals> Localizer { get; set; } = null!;
+    [Inject] private IStringLocalizer<Literals> L { get; set; } = null!;
 }

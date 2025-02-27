@@ -3,7 +3,7 @@ using System.Security.Claims;
 using System.Text;
 using Fantasy.Backend.Data;
 using Fantasy.Backend.Helpers;
-using Fantasy.Backend.UnitsOfWork.Interfaces;
+using Fantasy.Backend.UnitOfWork.Infraestructure.Interfaces;
 using Fantasy.Shared.DTOs;
 using Fantasy.Shared.Entities;
 using Fantasy.Shared.Responses;
@@ -262,6 +262,7 @@ public class AccountsController : ControllerBase
                 new(ClaimTypes.Role, user.UserType.ToString()),
                 new("FirstName", user.FirstName),
                 new("LastName", user.LastName),
+                new("UserName", $"{user.FirstName} {user.LastName}"),
                 new("Photo", user.Photo ?? string.Empty),
                 new("CountryId", user.Country.Id.ToString())
             };

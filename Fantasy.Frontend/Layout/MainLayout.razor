@@ -12,23 +12,59 @@
                        Edge="Edge.Start" 
                        OnClick="@((e) => DrawerToggle())" />
         <MudLink Href="/" 
-                 Typo="Typo.h5" 
+                 Typo="Typo.h6" 
                  Class="ml-3" 
                  Color="Color.Inherit">
             @L["IUTitle"]
         </MudLink>
-        <MudSpacer />       
+
+        <MudSpacer />        
+
+        <!-- AuthLinks -->
+        <MudMenu>
+            <ActivatorContent>
+                <MudAvatar Size="Size.Small" Color="Color.Primary">
+                    @if (!string.IsNullOrEmpty(photoUser))
+                    {
+                        <MudImage Src="@photoUser"></MudImage>
+                    }
+                    else
+                    {
+                        @GetInicials()
+                    }
+                </MudAvatar>
+            </ActivatorContent>
+
+            <ChildContent>
+                <AuthLinks />
+            </ChildContent>
+        </MudMenu>
+
+        <!-- Settings -->
         <MudMenu Icon="@Icons.Material.Filled.Settings" 
                     Color="Color.Inherit" 
-                    ActivationEvent="@MouseEvent.MouseOver" 
                     AnchorOrigin="Origin.BottomRight" 
                     TransformOrigin="Origin.TopRight">
             <AuthLinks /> 
         </MudMenu>
+
+        <!-- Dark Light -->
         <MudIconButton Icon="@_icon" 
                        Color="Color.Inherit" 
                        Edge="Edge.Start" 
                        OnClick="@((e) => DarkModeToggle())" />
+
+        <!-- Lenguage -->
+        <MudMenu Icon="@Icons.Material.Filled._3p"
+                 Color="Color.Inherit"
+                 ActivationEvent="@MouseEvent.MouseOver"
+                 AnchorOrigin="Origin.BottomRight"
+                 TransformOrigin="Origin.TopRight">
+            <LenguageLinks />
+        </MudMenu>
+
+
+
     </MudAppBar>
     <MudDrawer @bind-Open="_drawerOpen" 
                ClipMode="DrawerClipMode.Always" 

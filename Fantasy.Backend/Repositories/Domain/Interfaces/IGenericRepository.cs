@@ -1,7 +1,7 @@
 ﻿using Fantasy.Shared.DTOs;
 using Fantasy.Shared.Responses;
 
-namespace Fantasy.Backend.Repositories.Interfaces;
+namespace Fantasy.Backend.Repositories.Domain.Interfaces;
 
 public interface IGenericRepository<T> where T : class
 {

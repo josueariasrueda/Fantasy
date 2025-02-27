@@ -1,24 +1,22 @@
-﻿using Fantasy.Shared.Resources;
+using Fantasy.Frontend.Pages.Auth;
+using Fantasy.Shared.Resources;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.Localization;
 using MudBlazor;
 
-namespace Fantasy.Frontend.Layout;
+namespace Fantasy.Frontend.Shared;
 
-public partial class MainLayout
+public partial class LenguageLinks
 {
-    private bool _drawerOpen = true;
-    private string _icon = Icons.Material.Filled.DarkMode;
     private string? photoUser;
     private string? username;
-    private bool _darkMode { get; set; } = true;
 
-    [Inject] private IStringLocalizer<Literals> Localizer { get; set; } = null!;
+    [Inject] private IStringLocalizer<Literals> L { get; set; } = null!;
     [Inject] private NavigationManager NavigationManager { get; set; } = null!;
     [Inject] private IDialogService DialogService { get; set; } = null!;
+    [Inject] private LanguageService LanguageService { get; set; } = null!;
     [CascadingParameter] private Task<AuthenticationState> AuthenticationStateTask { get; set; } = null!;
-    [Inject] private IStringLocalizer<Literals> L { get; set; } = null!;
 
     protected override async Task OnParametersSetAsync()
     {
@@ -30,34 +28,33 @@ public partial class MainLayout
         {
             photoUser = photoClaim.Value;
         }
+
         if (nameClaim is not null)
         {
             username = claims.FirstOrDefault(x => x.Type == "UserName").Value;
         }
-        else
-        { username = null; }
     }
 
-    private void DrawerToggle()
+    private void EditAction()
     {
-        _drawerOpen = !_drawerOpen;
+        NavigationManager.NavigateTo("/EditUser");
     }
 
-    private void DarkModeToggle()
+    private void ShowModalLogIn()
     {
-        _darkMode = !_darkMode;
-        _icon = _darkMode ? Icons.Material.Filled.LightMode : Icons.Material.Filled.DarkMode;
+        var closeOnEscapeKey = new DialogOptions() { CloseOnEscapeKey = true };
+        DialogService.Show<Login>(L["UserLogin"], closeOnEscapeKey);
     }
 
-    private string GetInicials()
+    private void ShowModalLogOut()
     {
-        if (string.IsNullOrWhiteSpace(username))
-            return "?";
+        var closeOnEscapeKey = new DialogOptions() { CloseOnEscapeKey = true };
+        DialogService.Show<Logout>(L["UserLogout"], closeOnEscapeKey);
+    }
 
-        var words = username.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-        if (words.Length == 1)
-            return words[0].Substring(0, 1).ToUpper();
-
-        return (words[0].Substring(0, 1) + words[1].Substring(0, 1)).ToUpper();
+    private void ChangeLanguage(string language)
+    {
+        LanguageService.SetLanguage(language);
+        NavigationManager.NavigateTo(NavigationManager.Uri, forceLoad: true);
     }
 }

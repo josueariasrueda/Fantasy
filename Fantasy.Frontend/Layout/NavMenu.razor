@@ -1,25 +1,25 @@
 ﻿<MudNavMenu>
     <MudStack AlignItems="AlignItems.Center">
-        <MudImage Src="images/Logo.png" Width="200" Class="p-3" />
+        <MudImage Src="images/Logo.jpg" Width="200" Class="p-3" />
     </MudStack>    
     <MudDivider />
     <MudNavLink Href="/" Match="NavLinkMatch.All" Icon="@Icons.Material.Rounded.Home">@L["IUHome"]</MudNavLink>
     <MudDivider />
-@*     <AuthorizeView Roles="Admin">
-        <Authorized> *@
+     <AuthorizeView Roles="Admin">
+        <Authorized> 
             <MudNavLink Href="/countries" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Public">@L["AppCountries"]</MudNavLink>
             <MudDivider />
-@*             <MudNavLink Href="/teams" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Groups">@Localizer["Teams"]</MudNavLink>
+@*              <MudNavLink Href="/teams" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Groups">@Localizer["Teams"]</MudNavLink>
             <MudDivider />
             <MudNavLink Href="/tournaments" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Star">@Localizer["Tournaments"]</MudNavLink>
-            <MudDivider />
-            <MudNavLink Href="/users" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.People">@Localizer["Users"]</MudNavLink>
             <MudDivider /> *@
-@*         </Authorized>
+            <MudNavLink Href="/users" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.People">@L["Users"]</MudNavLink>
+            <MudDivider /> 
+         </Authorized>
     </AuthorizeView>
     <AuthorizeView>
-        <MudNavLink Href="/groups" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.SportsSoccer">@Localizer["MyGroups"]</MudNavLink>
+        <MudNavLink Href="/groups" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.SportsSoccer">@L["MyGroups"]</MudNavLink>
         <MudDivider />
-    </AuthorizeView> *@
+    </AuthorizeView> 
     <MudNavLink Href="/about" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Info">@L["IUAbout"]</MudNavLink>
 </MudNavMenu>

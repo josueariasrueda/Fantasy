@@ -29,6 +29,8 @@ public interface IUsersRepository
 
     Task<IdentityResult> AddUserAsync(User user, string password);
 
+    Task<IdentityResult> AddUserAsync(User user, string password, string localpathphoto);
+
     Task CheckRoleAsync(string roleName);
 
     Task AddUserToRoleAsync(User user, string roleName);

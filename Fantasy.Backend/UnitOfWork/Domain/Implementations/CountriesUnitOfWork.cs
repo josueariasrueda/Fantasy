@@ -1,10 +1,11 @@
-﻿using Fantasy.Backend.Repositories.Interfaces;
-using Fantasy.Backend.UnitsOfWork.Interfaces;
+﻿using Fantasy.Backend.Repositories.Domain.Interfaces;
+using Fantasy.Backend.UnitOfWork.Domain.Interfaces;
+using Fantasy.Backend.UnitOfWork.Infraestructure.Implementatios;
 using Fantasy.Shared.DTOs;
 using Fantasy.Shared.Entities;
 using Fantasy.Shared.Responses;
 
-namespace Fantasy.Backend.UnitsOfWork.Implementations;
+namespace Fantasy.Backend.UnitOfWork.Domain.Implementations;
 
 public class CountriesUnitOfWork : GenericUnitOfWork<Country>, ICountriesUnitOfWork
 {

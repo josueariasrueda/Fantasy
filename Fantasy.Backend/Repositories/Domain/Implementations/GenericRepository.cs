@@ -1,11 +1,11 @@
 ﻿using Fantasy.Backend.Data;
 using Fantasy.Backend.Helpers;
-using Fantasy.Backend.Repositories.Interfaces;
+using Fantasy.Backend.Repositories.Domain.Interfaces;
 using Fantasy.Shared.DTOs;
 using Fantasy.Shared.Responses;
 using Microsoft.EntityFrameworkCore;
 
-namespace Fantasy.Backend.Repositories.Implementations;
+namespace Fantasy.Backend.Repositories.Domain.Implementations;
 
 public class GenericRepository<T> : IGenericRepository<T> where T : class
 {
