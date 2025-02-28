@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
 using MudBlazor;
+using static System.Net.WebRequestMethods;
 
 namespace Fantasy.Frontend.Pages.Auth;
 
@@ -23,6 +24,7 @@ public partial class UserIndex
     [Inject] private IRepository Repository { get; set; } = null!;
     [Inject] private ISnackbar Snackbar { get; set; } = null!;
     [Inject] private IStringLocalizer<Literals> Localizer { get; set; } = null!;
+    [Inject] private HttpClient HttpClient { get; set; } = null!;
 
     [Parameter, SupplyParameterFromQuery] public string Filter { get; set; } = string.Empty;
 
@@ -90,5 +92,10 @@ public partial class UserIndex
         Filter = value;
         await LoadAsync();
         await table.ReloadServerData();
+    }
+
+    private string GetUserPhoto(string fileName)
+    {
+        return $"{HttpClient.BaseAddress}api/files/downloaduserphoto/{Uri.EscapeDataString(fileName)}";
     }
 }

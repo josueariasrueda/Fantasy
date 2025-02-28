@@ -21,7 +21,7 @@ else
                            EndIcon="@Icons.Material.Filled.Add" 
                            Color="Color.Info" 
                            Href="/register/?IsAdmin=true">
-                    @Localizer["UserUsers"] @Localizer["UserAdmin"]
+                    @Localizer["Users"] @Localizer["UserAdmin"]
                 </MudButton>
             </div>
             <MudSpacer />
@@ -37,7 +37,7 @@ else
         </HeaderContent>
         <RowTemplate>
             <MudTd>
-                <MudImage Src="@context.PhotoFull" Width="80" Height="80" Style="border-radius: 50%;" />
+                <MudImage Src="@GetUserPhoto(context.PhotoFull)" Width="80" Height="80" Style="border-radius: 50%;" />
             </MudTd>
             <MudTd>@context.FullName</MudTd>
             <MudTd>@context.PhoneNumber</MudTd>

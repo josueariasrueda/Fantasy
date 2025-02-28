@@ -77,6 +77,8 @@ public interface IFileService
     /// <returns>The URL of the photo, or null if the photo does not exist.</returns>
     string? GetUserPhotoUrl(string fileName);
 
+    string? GetUserPhotoData(string fileName);
+
     /// <summary>
     /// Deletes a user photo with the given file name.
     /// </summary>

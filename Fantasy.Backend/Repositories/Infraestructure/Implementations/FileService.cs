@@ -180,6 +180,19 @@ public class FileService : IFileService
     }
 
     /// <summary>
+    /// Gets the URL of a user photo.
+    /// </summary>
+    /// <param name="fileName">The name of the file.</param>
+    /// <returns>The URL of the user photo if it exists, otherwise null.</returns>
+    public string? GetUserPhotoData(string fileName)
+    {
+        string filePath = Path.Combine(_basePath, "root", "user", fileName).Replace("\\", "/");
+        var encodedPhotoName = Uri.EscapeDataString(filePath);
+        byte[] imageBytes = System.IO.File.ReadAllBytes(filePath);
+        return $"data:image/jpeg;base64,{Convert.ToBase64String(imageBytes)}";
+    }
+
+    /// <summary>
     /// Deletes a user photo from the specified file path.
     /// </summary>
     /// <param name="fileName">The name of the file to delete.</param>

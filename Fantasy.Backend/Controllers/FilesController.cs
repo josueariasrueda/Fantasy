@@ -69,6 +69,15 @@ public class FilesController : ControllerBase
         return File(fileStream, "image/jpeg");
     }
 
+    [HttpGet("downloaduserphotoData")]
+    public IActionResult DownloadUserPhotoData(string fileName)
+    {
+        var fileData = _fileService.GetUserPhotoData(fileName);
+        if (fileData == null)
+            return NotFound();
+        return Ok(fileData);
+    }
+
     [HttpDelete("deleteuserphoto")]
     public IActionResult DeleteUserPhoto([FromBody] string filePath)
     {
