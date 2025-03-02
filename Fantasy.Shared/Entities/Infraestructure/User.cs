@@ -1,10 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Fantasy.Shared.Entities.Domain;
 using Fantasy.Shared.Enums;
 using Fantasy.Shared.Resources;
 using Microsoft.AspNetCore.Identity;
 using static System.Net.Mime.MediaTypeNames;
 
-namespace Fantasy.Shared.Entities;
+namespace Fantasy.Shared.Entities.Infraestructure;
 
 public class User : IdentityUser
 {
@@ -43,4 +44,7 @@ public class User : IdentityUser
     //public int PredictionsCount => Predictions == null ? 0 : Predictions.Count;
 
     public string PhotoFull => string.IsNullOrEmpty(Photo) ? "/images/NoImage.png" : Photo;
+
+    public ICollection<UserTenantPermission> UsersTenantPermissions { get; set; } = new List<UserTenantPermission>();
+    public ICollection<UserSubscription> UsersSubscriptions { get; set; } = new List<UserSubscription>();
 }

@@ -2,7 +2,7 @@
 using Fantasy.Backend.Helpers;
 using Fantasy.Backend.Repositories.Domain.Interfaces;
 using Fantasy.Shared.DTOs;
-using Fantasy.Shared.Entities;
+using Fantasy.Shared.Entities.Domain;
 using Fantasy.Shared.Responses;
 using Microsoft.EntityFrameworkCore;
 

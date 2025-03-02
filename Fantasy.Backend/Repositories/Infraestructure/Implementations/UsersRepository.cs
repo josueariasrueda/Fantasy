@@ -2,7 +2,7 @@
 using Fantasy.Backend.Helpers;
 using Fantasy.Backend.Repositories.Interfaces;
 using Fantasy.Shared.DTOs;
-using Fantasy.Shared.Entities;
+using Fantasy.Shared.Entities.Infraestructure;
 using Fantasy.Shared.Responses;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.StaticFiles;

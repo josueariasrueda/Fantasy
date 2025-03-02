@@ -1,7 +1,7 @@
 ﻿using Fantasy.Shared.Resources;
 using System.ComponentModel.DataAnnotations;
 
-namespace Fantasy.Shared.Entities;
+namespace Fantasy.Shared.Entities.Domain;
 
 public class Country
 {

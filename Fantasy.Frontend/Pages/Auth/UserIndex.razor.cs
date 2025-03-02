@@ -1,5 +1,5 @@
 using Fantasy.Frontend.Repositories;
-using Fantasy.Shared.Entities;
+using Fantasy.Shared.Entities.Infraestructure;
 using Fantasy.Shared.Resources;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;

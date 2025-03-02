@@ -1,10 +1,10 @@
 ﻿using Fantasy.Backend.Helpers;
 using Fantasy.Backend.UnitOfWork.Infraestructure.Interfaces;
 using Fantasy.Backend.UnitOfWork.Infraestructure.Implementatios;
-using Fantasy.Shared.Entities;
 using Fantasy.Shared.Enums;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.CodeAnalysis;
+using Fantasy.Shared.Entities.Infraestructure;
 
 namespace Fantasy.Backend.Data;
 

@@ -2,7 +2,7 @@ using CurrieTechnologies.Razor.SweetAlert2;
 using Fantasy.Frontend.Repositories;
 using Fantasy.Frontend.Services;
 using Fantasy.Shared.DTOs;
-using Fantasy.Shared.Entities;
+using Fantasy.Shared.Entities.Domain;
 using Fantasy.Shared.Enums;
 using Fantasy.Shared.Resources;
 using Microsoft.AspNetCore.Components;

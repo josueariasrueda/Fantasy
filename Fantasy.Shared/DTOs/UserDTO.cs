@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Fantasy.Shared.Entities;
+using Fantasy.Shared.Entities.Infraestructure;
 using Fantasy.Shared.Resources;
 
 namespace Fantasy.Shared.DTOs;

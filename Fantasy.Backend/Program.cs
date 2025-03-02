@@ -3,7 +3,6 @@ using System.Text.Json.Serialization;
 using Fantasy.Backend.Data;
 using Fantasy.Backend.Helpers;
 using Fantasy.Backend.Repositories.Interfaces;
-using Fantasy.Shared.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +18,7 @@ using Fantasy.Backend.Repositories.Infraestructure.Interfaces;
 using Fantasy.Backend.Middlewares;
 using Fantasy.Backend.UnitOfWork.Domain.Implementations;
 using Fantasy.Backend.UnitOfWork.Domain.Interfaces;
+using Fantasy.Shared.Entities.Infraestructure;
 
 [ExcludeFromCodeCoverage(Justification = "It is a wrapper used to test other classes. There is no way to prove it.")]
 internal class Program

@@ -5,7 +5,7 @@ using Fantasy.Backend.Data;
 using Fantasy.Backend.Helpers;
 using Fantasy.Backend.UnitOfWork.Infraestructure.Interfaces;
 using Fantasy.Shared.DTOs;
-using Fantasy.Shared.Entities;
+using Fantasy.Shared.Entities.Infraestructure;
 using Fantasy.Shared.Responses;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;

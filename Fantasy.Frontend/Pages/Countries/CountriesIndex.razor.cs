@@ -1,7 +1,7 @@
 using System.Net;
 using Fantasy.Frontend.Repositories;
 using Fantasy.Frontend.Shared;
-using Fantasy.Shared.Entities;
+using Fantasy.Shared.Entities.Domain;
 using Fantasy.Shared.Resources;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
