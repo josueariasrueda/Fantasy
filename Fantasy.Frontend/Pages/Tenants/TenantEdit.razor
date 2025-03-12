@@ -1,0 +1,12 @@
+﻿@if (tenant is null)
+{
+    <Loading />
+}
+else
+{
+    <MudDialog>
+        <DialogContent>
+            <TenantForm @ref="tenantForm" Tenant="tenant" OnValidSubmit="EditAsync" ReturnAction="Return" />
+        </DialogContent>
+    </MudDialog>
+}

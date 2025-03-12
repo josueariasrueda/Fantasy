@@ -1,0 +1,12 @@
+﻿@if (subscription is null)
+{
+    <Loading />
+}
+else
+{
+    <MudDialog>
+        <DialogContent>
+            <SubscriptionForm @ref="subscriptionForm" Subscription="subscription" OnValidSubmit="EditAsync" ReturnAction="Return" />
+        </DialogContent>
+    </MudDialog>
+}

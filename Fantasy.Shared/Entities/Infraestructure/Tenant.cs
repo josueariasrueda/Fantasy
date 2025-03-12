@@ -10,7 +10,7 @@ namespace Fantasy.Shared.Entities.Infraestructure;
 
 public class Tenant : IMustHaveTenant
 {
-    public Guid Id { get; set; } = Guid.NewGuid();
+    public int Id { get; set; }
 
     [Display(Name = "TenantCode", ResourceType = typeof(Literals))]
     [MaxLength(6, ErrorMessageResourceName = "IUMaxLength", ErrorMessageResourceType = typeof(Literals))]
@@ -21,7 +21,7 @@ public class Tenant : IMustHaveTenant
     [Required(ErrorMessageResourceName = "IURequiredField", ErrorMessageResourceType = typeof(Literals))]
     public string Name { get; set; } = null!;
 
-    [Display(Name = "ConnectionString", ResourceType = typeof(Literals))]
+    [Display(Name = "TenantConnectionString", ResourceType = typeof(Literals))]
     [Required(ErrorMessageResourceName = "IURequiredField", ErrorMessageResourceType = typeof(Literals))]
     public string ConnectionString { get; set; } = null!;
 

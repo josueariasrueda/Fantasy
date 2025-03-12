@@ -33,7 +33,7 @@ public class CountriesRepository : GenericRepository<Country>, ICountriesReposit
     public override async Task<ActionResponse<IEnumerable<Country>>> GetAsync(PaginationDTO pagination)
     {
         var queryable = _context.Countries
-            //.Include(x => x.Teams)
+            .Include(x => x.DefaultCurrency)
             .AsQueryable();
 
         if (!string.IsNullOrWhiteSpace(pagination.Filter))

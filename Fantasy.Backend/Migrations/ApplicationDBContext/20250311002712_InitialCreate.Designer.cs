@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fantasy.Backend.Migrations.ApplicationDBContext
 {
     [DbContext(typeof(ApplicationDataContext))]
-    [Migration("20250302071718_Infraestructure")]
-    partial class Infraestructure
+    [Migration("20250311002712_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,12 +33,30 @@ namespace Fantasy.Backend.Migrations.ApplicationDBContext
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Alfa2Code")
+                        .HasMaxLength(5)
+                        .HasColumnType("nvarchar(5)");
+
+                    b.Property<string>("Alfa3Code")
+                        .HasMaxLength(5)
+                        .HasColumnType("nvarchar(5)");
+
                     b.Property<string>("CallingCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(5)
+                        .HasColumnType("nvarchar(5)");
 
                     b.Property<string>("Code")
-                        .IsRequired()
+                        .HasMaxLength(5)
+                        .HasColumnType("nvarchar(5)");
+
+                    b.Property<int>("DefaultCurrencyId")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("GuidCode")
+                        .HasMaxLength(100)
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ISOname")
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
@@ -50,7 +68,10 @@ namespace Fantasy.Backend.Migrations.ApplicationDBContext
                     b.HasKey("Id");
 
                     b.HasIndex("Code")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[Code] IS NOT NULL");
+
+                    b.HasIndex("DefaultCurrencyId");
 
                     b.HasIndex("Name")
                         .IsUnique();
@@ -58,10 +79,20 @@ namespace Fantasy.Backend.Migrations.ApplicationDBContext
                     b.ToTable("Countries");
                 });
 
-            modelBuilder.Entity("Fantasy.Shared.Entities.Infraestructure.Enterprise", b =>
+            modelBuilder.Entity("Fantasy.Shared.Entities.Domain.Currency", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Code")
+                        .HasMaxLength(5)
+                        .HasColumnType("nvarchar(5)");
+
+                    b.Property<Guid?>("GuidCode")
+                        .HasMaxLength(100)
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
@@ -69,8 +100,30 @@ namespace Fantasy.Backend.Migrations.ApplicationDBContext
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<Guid>("TenantId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Value")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Currencies");
+                });
+
+            modelBuilder.Entity("Fantasy.Shared.Entities.Infraestructure.Enterprise", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("TenantId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -81,9 +134,11 @@ namespace Fantasy.Backend.Migrations.ApplicationDBContext
 
             modelBuilder.Entity("Fantasy.Shared.Entities.Infraestructure.Module", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -97,14 +152,29 @@ namespace Fantasy.Backend.Migrations.ApplicationDBContext
 
             modelBuilder.Entity("Fantasy.Shared.Entities.Infraestructure.Subscription", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("ExpirationDate")
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ConnectionString")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DiskSpace")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ExpirationDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("MaxElectronicsDocs")
+                        .HasColumnType("int");
+
                     b.Property<int>("MaxEnterprises")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MaxSpace")
                         .HasColumnType("int");
 
                     b.Property<int>("MaxUsers")
@@ -115,16 +185,29 @@ namespace Fantasy.Backend.Migrations.ApplicationDBContext
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<string>("Tenant")
+                        .IsRequired()
+                        .HasMaxLength(6)
+                        .HasColumnType("nvarchar(6)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Subscriptions");
                 });
 
             modelBuilder.Entity("Fantasy.Shared.Entities.Infraestructure.Tenant", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Code")
                         .IsRequired()
@@ -234,31 +317,16 @@ namespace Fantasy.Backend.Migrations.ApplicationDBContext
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("Fantasy.Shared.Entities.Infraestructure.UserSubscription", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<Guid>("SubscriptionId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("UserId", "SubscriptionId");
-
-                    b.HasIndex("SubscriptionId");
-
-                    b.ToTable("UsersSubscriptions");
-                });
-
             modelBuilder.Entity("Fantasy.Shared.Entities.Infraestructure.UserTenantPermission", b =>
                 {
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<Guid>("TenantId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("TenantId")
+                        .HasColumnType("int");
 
-                    b.Property<Guid>("ModuleId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("ModuleId")
+                        .HasColumnType("int");
 
                     b.Property<bool>("CanDelete")
                         .HasColumnType("bit");
@@ -417,6 +485,17 @@ namespace Fantasy.Backend.Migrations.ApplicationDBContext
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Fantasy.Shared.Entities.Domain.Country", b =>
+                {
+                    b.HasOne("Fantasy.Shared.Entities.Domain.Currency", "DefaultCurrency")
+                        .WithMany()
+                        .HasForeignKey("DefaultCurrencyId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("DefaultCurrency");
+                });
+
             modelBuilder.Entity("Fantasy.Shared.Entities.Infraestructure.Enterprise", b =>
                 {
                     b.HasOne("Fantasy.Shared.Entities.Infraestructure.Tenant", null)
@@ -424,6 +503,17 @@ namespace Fantasy.Backend.Migrations.ApplicationDBContext
                         .HasForeignKey("TenantId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Fantasy.Shared.Entities.Infraestructure.Subscription", b =>
+                {
+                    b.HasOne("Fantasy.Shared.Entities.Infraestructure.User", "User")
+                        .WithMany("Subscriptions")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Fantasy.Shared.Entities.Infraestructure.User", b =>
@@ -435,25 +525,6 @@ namespace Fantasy.Backend.Migrations.ApplicationDBContext
                         .IsRequired();
 
                     b.Navigation("Country");
-                });
-
-            modelBuilder.Entity("Fantasy.Shared.Entities.Infraestructure.UserSubscription", b =>
-                {
-                    b.HasOne("Fantasy.Shared.Entities.Infraestructure.Subscription", "Subscription")
-                        .WithMany("UsersSubscriptions")
-                        .HasForeignKey("SubscriptionId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Fantasy.Shared.Entities.Infraestructure.User", "User")
-                        .WithMany("UsersSubscriptions")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Subscription");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Fantasy.Shared.Entities.Infraestructure.UserTenantPermission", b =>
@@ -539,11 +610,6 @@ namespace Fantasy.Backend.Migrations.ApplicationDBContext
                     b.Navigation("UsersTenantPermissions");
                 });
 
-            modelBuilder.Entity("Fantasy.Shared.Entities.Infraestructure.Subscription", b =>
-                {
-                    b.Navigation("UsersSubscriptions");
-                });
-
             modelBuilder.Entity("Fantasy.Shared.Entities.Infraestructure.Tenant", b =>
                 {
                     b.Navigation("Enterprises");
@@ -553,7 +619,7 @@ namespace Fantasy.Backend.Migrations.ApplicationDBContext
 
             modelBuilder.Entity("Fantasy.Shared.Entities.Infraestructure.User", b =>
                 {
-                    b.Navigation("UsersSubscriptions");
+                    b.Navigation("Subscriptions");
 
                     b.Navigation("UsersTenantPermissions");
                 });

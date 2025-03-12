@@ -1,0 +1,62 @@
+﻿<NavigationLock OnBeforeInternalNavigation="OnBeforeInternalNavigation" />
+
+<EditForm EditContext="editContext" OnValidSubmit="OnValidSubmit">
+    <DataAnnotationsValidator />
+
+    <MudTextField Label="@L["SubscriptionName"]"
+                  @bind-Value="@Subscription.Name"
+                  For="@(() => Subscription.Name)"
+                  Class="mb-4" />
+     <MudTextField Label="@L["SubscriptionTenant"]"
+                  @bind-Value="@Subscription.Tenant"
+                  For="@(() => Subscription.Tenant)"
+                  Class="mb-4" />
+    <MudTextField Label="@L["SubscriptionConnectionString"]"
+                  @bind-Value="@Subscription.ConnectionString"
+                  For="@(() => Subscription.ConnectionString)"
+                  Class="mb-4" />
+    <MudTextField Label="@L["SubscriptionExpirationDate"]"
+                  @bind-Value="Subscription.ExpirationDate"
+                  For="@(() => Subscription.ExpirationDate)"
+                  Type="date"
+                  Format="yyyy-MM-dd"
+                  Class="mb-2" />
+
+
+
+    <MudTextField Label="@L["SubscriptionMaxUsers"]"
+                  @bind-Value="@Subscription.MaxUsers"
+                  For="@(() => Subscription.MaxUsers)"
+                  Class="mb-4" />
+    <MudTextField Label="@L["SubscriptionMaxEnterprises"]"
+                  @bind-Value="@Subscription.MaxEnterprises"
+                  For="@(() => Subscription.MaxEnterprises)"
+                  Class="mb-4" />
+    <MudTextField Label="@L["SubscriptionMaxElectronicsDocs"]"
+                  @bind-Value="@Subscription.MaxElectronicsDocs"
+                  For="@(() => Subscription.MaxElectronicsDocs)"
+                  Class="mb-4" />
+    <MudTextField Label="@L["SubscriptionMaxSpace"]"
+                  @bind-Value="@Subscription.MaxSpace"
+                  For="@(() => Subscription.MaxSpace)"
+                  Class="mb-4" />
+    <MudTextField Label="@L["SubscriptionDiskSpace"]"
+                  @bind-Value="@Subscription.DiskSpace"
+                  For="@(() => Subscription.DiskSpace)"
+                  Class="mb-4" /> 
+
+
+    <MudButton Variant="Variant.Outlined"
+               StartIcon="@Icons.Material.Filled.ArrowBack"
+               Color="Color.Info"
+               OnClick="ReturnAction">
+        @L["IUReturn"]
+    </MudButton>
+
+    <MudButton Variant="Variant.Outlined"
+               StartIcon="@Icons.Material.Filled.Check"
+               Color="Color.Primary"
+               ButtonType="ButtonType.Submit">
+        @L["IUSaveChanges"]
+    </MudButton>
+</EditForm>

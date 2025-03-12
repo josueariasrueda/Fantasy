@@ -1,4 +1,3 @@
-using System.Net;
 using Fantasy.Frontend.Repositories;
 using Fantasy.Frontend.Shared;
 using Fantasy.Shared.Entities.Domain;
@@ -7,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
 using MudBlazor;
+using System.Net;
 
 namespace Fantasy.Frontend.Pages.Countries;
 
@@ -102,11 +102,11 @@ public partial class CountriesIndex
                 {
                     { "Id", id }
                 };
-            dialog = DialogService.Show<CountryEdit>($"{L["IUEdit"]} {L["AppCountry"]}", parameters, options);
+            dialog = DialogService.Show<CountryEdit>($"{L["IUEdit"]} {L["Country"]}", parameters, options);
         }
         else
         {
-            dialog = DialogService.Show<CountryCreate>($"{L["IUNew"]} {L["AppCountry"]}", options);
+            dialog = DialogService.Show<CountryCreate>($"{L["IUNew"]} {L["Country"]}", options);
         }
 
         var result = await dialog.Result;
@@ -121,7 +121,7 @@ public partial class CountriesIndex
     {
         var parameters = new DialogParameters
             {
-                { "Message", string.Format(L["IUDeleteConfirm"], L["AppCountry"], country.Name) }
+                { "Message", string.Format(L["IUDeleteConfirm"], L["Country"], country.Name) }
             };
         var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.ExtraSmall, CloseOnEscapeKey = true };
         // var dialogs = DialogService.Show<ConfirmDialog>(L["Confirmation"], parameters, options);

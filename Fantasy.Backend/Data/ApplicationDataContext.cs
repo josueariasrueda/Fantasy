@@ -10,6 +10,8 @@ public class ApplicationDataContext : IdentityDbContext<User>
 {
     // add-migration -Context ApplicationDataContext -o Migrations/ApplicationDBContext InitialCreate
     // update-database -Context ApplicationDataContext
+    // remove-migration -Context ApplicationDataContext
+    // Drop-Database -Context "ApplicationDataContext"
 
     public ApplicationDataContext(DbContextOptions<ApplicationDataContext> options) : base(options)
     {
@@ -20,8 +22,8 @@ public class ApplicationDataContext : IdentityDbContext<User>
     public DbSet<Tenant> Tenants { get; set; }
     public DbSet<Enterprise> Enterprises { get; set; }
     public DbSet<UserTenantPermission> UsersTenantPermissions { get; set; }
-    public DbSet<UserSubscription> UsersSubscriptions { get; set; }
     public DbSet<Country> Countries { get; set; }
+    public DbSet<Currency> Currencies { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -54,19 +56,16 @@ public class ApplicationDataContext : IdentityDbContext<User>
             .HasForeignKey(utp => utp.ModuleId)
             .IsRequired();
 
-        modelBuilder.Entity<UserSubscription>()
-            .HasKey(us => new { us.UserId, us.SubscriptionId });
-
-        modelBuilder.Entity<UserSubscription>()
-            .HasOne(us => us.User)
-            .WithMany(u => u.UsersSubscriptions)
-            .HasForeignKey(us => us.UserId)
+        modelBuilder.Entity<Subscription>()
+            .HasOne(s => s.User)
+            .WithMany(u => u.Subscriptions)
+            .HasForeignKey(s => s.UserId)
             .IsRequired();
 
-        modelBuilder.Entity<UserSubscription>()
-            .HasOne(us => us.Subscription)
-            .WithMany(s => s.UsersSubscriptions)
-            .HasForeignKey(us => us.SubscriptionId)
+        modelBuilder.Entity<Country>()
+            .HasOne(c => c.DefaultCurrency)
+            .WithMany()
+            .HasForeignKey(c => c.DefaultCurrencyId)
             .IsRequired();
 
         modelBuilder.Entity<Country>().HasIndex(c => c.Name).IsUnique();

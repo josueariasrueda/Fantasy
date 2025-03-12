@@ -7,12 +7,11 @@
     <MudDivider />
      <AuthorizeView Roles="Admin">
         <Authorized> 
-            <MudNavLink Href="/countries" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Public">@L["AppCountries"]</MudNavLink>
-            <MudDivider />
-@*              <MudNavLink Href="/teams" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Groups">@Localizer["Teams"]</MudNavLink>
-            <MudDivider />
-            <MudNavLink Href="/tournaments" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Star">@Localizer["Tournaments"]</MudNavLink>
-            <MudDivider /> *@
+            <MudNavLink Href="/currencies" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Public">@L["Currencies"]</MudNavLink>
+            <MudNavLink Href="/countries" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Public">@L["Countries"]</MudNavLink>
+              <MudNavLink Href="/tenants" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Groups">@L["Tenants"]</MudNavLink>
+            <MudNavLink Href="/subscriptions" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Star">@L["Subscriptions"]</MudNavLink>
+            <MudNavLink Href="/enterprices" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Star">@L["Enterprices"]</MudNavLink>
             <MudNavLink Href="/users" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.People">@L["Users"]</MudNavLink>
             <MudDivider /> 
          </Authorized>

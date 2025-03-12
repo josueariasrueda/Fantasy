@@ -8,8 +8,8 @@ namespace Fantasy.Shared.Entities.Infraestructure;
 
 public class EnterprisesTenant
 {
-    public Guid EnterpriseId { get; set; }
+    public int EnterpriseId { get; set; }
     public Enterprise Enterprise { get; set; } = null!;
-    public Guid TenantId { get; set; }
+    public int TenantId { get; set; }
     public Tenant Tenant { get; set; } = null!;
 }

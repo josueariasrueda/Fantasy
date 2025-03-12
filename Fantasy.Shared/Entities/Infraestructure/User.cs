@@ -46,5 +46,5 @@ public class User : IdentityUser
     public string PhotoFull => string.IsNullOrEmpty(Photo) ? "/images/NoImage.png" : Photo;
 
     public ICollection<UserTenantPermission> UsersTenantPermissions { get; set; } = new List<UserTenantPermission>();
-    public ICollection<UserSubscription> UsersSubscriptions { get; set; } = new List<UserSubscription>();
+    public ICollection<Subscription> Subscriptions { get; set; } = new List<Subscription>();
 }

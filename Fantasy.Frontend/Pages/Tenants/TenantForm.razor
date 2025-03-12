@@ -1,0 +1,33 @@
+﻿<NavigationLock OnBeforeInternalNavigation="OnBeforeInternalNavigation" />
+
+<EditForm EditContext="editContext" OnValidSubmit="OnValidSubmit">
+    <DataAnnotationsValidator />
+
+    <MudTextField Label="@L["TenantName"]"
+                  @bind-Value="@Tenant.Name"
+                  For="@(() => Tenant.Name)"
+                  Class="mb-4" />
+    <MudTextField Label="@L["TenantCode"]"
+                  @bind-Value="@Tenant.Code"
+                  For="@(() => Tenant.Code)"
+                  Class="mb-4" />
+    <MudTextField Label="@L["TenantConnectionString"]"
+                  @bind-Value="@Tenant.ConnectionString"
+                  For="@(() => Tenant.ConnectionString)"
+                  Class="mb-4" />
+
+
+    <MudButton Variant="Variant.Outlined"
+               StartIcon="@Icons.Material.Filled.ArrowBack"
+               Color="Color.Info"
+               OnClick="ReturnAction">
+        @L["IUReturn"]
+    </MudButton>
+
+    <MudButton Variant="Variant.Outlined"
+               StartIcon="@Icons.Material.Filled.Check"
+               Color="Color.Primary"
+               ButtonType="ButtonType.Submit">
+        @L["IUSaveChanges"]
+    </MudButton>
+</EditForm>

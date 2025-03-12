@@ -25,6 +25,7 @@ public class SeedApplicationDbContext
     public async Task SeedAsync()
     {
         await _context.Database.EnsureCreatedAsync();
+        await CheckCurrenciesAsync();
         await CheckCountriesAsync();
         await CheckRolesAsync();
         await CheckUsersAsync();
@@ -88,8 +89,17 @@ public class SeedApplicationDbContext
     {
         if (!_context.Countries.Any())
         {
-            var countriesStatesCitiesSQLScript = File.ReadAllText("Data\\Scripts\\Countries.sql");
-            await _context.Database.ExecuteSqlRawAsync(countriesStatesCitiesSQLScript);
+            var SQLScript = File.ReadAllText("Data\\Scripts\\Countries.sql");
+            await _context.Database.ExecuteSqlRawAsync(SQLScript);
+        }
+    }
+
+    private async Task CheckCurrenciesAsync()
+    {
+        if (!_context.Currencies.Any())
+        {
+            var SQLScript = File.ReadAllText("Data\\Scripts\\Currencies.sql");
+            await _context.Database.ExecuteSqlRawAsync(SQLScript);
         }
     }
 }

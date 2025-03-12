@@ -1,30 +1,44 @@
 ﻿using Fantasy.Shared.Resources;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Fantasy.Shared.Entities.Infraestructure;
 
 public class Subscription
 {
-    public Guid Id { get; set; } = Guid.NewGuid();
+    public int Id { get; set; }
 
     [Display(Name = "SubscriptionName", ResourceType = typeof(Literals))]
     [MaxLength(100, ErrorMessageResourceName = "IUMaxLength", ErrorMessageResourceType = typeof(Literals))]
     [Required(ErrorMessageResourceName = "IURequiredField", ErrorMessageResourceType = typeof(Literals))]
     public string Name { get; set; } = null!;
 
-    [Display(Name = "ExpirationDate", ResourceType = typeof(Literals))]
-    public DateTime ExpirationDate { get; set; }
+    [Display(Name = "SubscriptionTenant", ResourceType = typeof(Literals))]
+    [MaxLength(6, ErrorMessageResourceName = "IUMaxLength", ErrorMessageResourceType = typeof(Literals))]
+    public string Tenant { get; set; } = null!;
 
-    [Display(Name = "MaxUsers", ResourceType = typeof(Literals))]
+    [Display(Name = "SubscriptionConnectionString", ResourceType = typeof(Literals))]
+    [Required(ErrorMessageResourceName = "IURequiredField", ErrorMessageResourceType = typeof(Literals))]
+    public string ConnectionString { get; set; } = null!;
+
+    [DataType(DataType.Date)]
+    [Display(Name = "SubscriptionExpirationDate", ResourceType = typeof(Literals))]
+    public DateTime? ExpirationDate { get; set; } = DateTime.Now;
+
+    [Display(Name = "SubscriptionMaxUsers", ResourceType = typeof(Literals))]
     public int MaxUsers { get; set; }
 
-    [Display(Name = "MaxEnterprises", ResourceType = typeof(Literals))]
+    [Display(Name = "SubscriptionMaxEnterprises", ResourceType = typeof(Literals))]
     public int MaxEnterprises { get; set; }
 
-    public ICollection<UserSubscription> UsersSubscriptions { get; set; } = new List<UserSubscription>();
+    [Display(Name = "SubscriptionMaxElectronicsDocs", ResourceType = typeof(Literals))]
+    public int MaxElectronicsDocs { get; set; }
+
+    [Display(Name = "SubscriptionMaxSpace", ResourceType = typeof(Literals))]
+    public int MaxSpace { get; set; }
+
+    [Display(Name = "SubscriptionDiskSpace", ResourceType = typeof(Literals))]
+    public int DiskSpace { get; set; }
+
+    public string UserId { get; set; } = null!;
+    public User User { get; set; } = null!;
 }

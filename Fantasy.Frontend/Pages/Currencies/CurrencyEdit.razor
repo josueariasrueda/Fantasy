@@ -1,0 +1,12 @@
+﻿@if(currencyDTO is null)
+{
+    <Loading/>
+}
+else
+{
+    <MudDialog>
+        <DialogContent>
+            <CurrencyForm @ref="currencyForm" CurrencyDTO="currencyDTO" OnValidSubmit="EditAsync" ReturnAction="Return" />
+        </DialogContent>
+    </MudDialog>
+}

@@ -27,16 +27,28 @@ else
             <FilterComponent ApplyFilter="SetFilterValue" />
         </ToolBarContent>
         <HeaderContent>
-            <MudTh>@L["AppCountry"]</MudTh>
-            <MudTh>@L["AppCode"]</MudTh>
-            <MudTh>@L["AppCallingCode"]</MudTh>
-@*             <MudTh># @L["AppTeams"]</MudTh> *@
+            <MudTh>@L["Country"]</MudTh>
+            <MudTh>@L["CountryCode"]</MudTh>
+            <MudTh>@L["CountryISOname"]</MudTh>
+            <MudTh>@L["CountryAlfa2Code"]</MudTh>
+            <MudTh>@L["CountryAlfa3Code"]</MudTh>
+            <MudTh>@L["CountryDefaultCurrencyCode"]</MudTh>
+            <MudTh>@L["CountryCallingCode"]</MudTh>
+            <MudTh>@L["CountryGuid"]</MudTh>
+
             <MudTh>@L["IUActions"]</MudTh>
         </HeaderContent>
         <RowTemplate>
             <MudTd>@context.Name</MudTd>
             <MudTd>@context.Code</MudTd>
+
+            <MudTd>@context.ISOname</MudTd>
+            <MudTd>@context.Alfa2Code</MudTd>
+            <MudTd>@context.Alfa3Code</MudTd>
+            <MudTd>@context.DefaultCurrency.Name</MudTd>
             <MudTd>@context.CallingCode</MudTd>
+            <MudTd>@context.GuidCode</MudTd>
+
            @* <MudTd>@context.TeamsCount</MudTd> *@
             <MudTd>
                 <MudTooltip Text="@L["IUEdit"]">

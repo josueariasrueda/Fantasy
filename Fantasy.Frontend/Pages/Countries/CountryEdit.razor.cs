@@ -1,6 +1,7 @@
 using Fantasy.Frontend.Repositories;
 using Fantasy.Shared.Entities.Domain;
 using Fantasy.Shared.Resources;
+using Fantasy.Shared.DTOs;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
 using MudBlazor;
@@ -9,7 +10,7 @@ namespace Fantasy.Frontend.Pages.Countries;
 
 public partial class CountryEdit
 {
-    private Country? country;
+    private CountryDTO? countryDTO;
     private CountryForm? countryForm;
 
     [Inject] private NavigationManager NavigationManager { get; set; } = null!;
@@ -21,7 +22,7 @@ public partial class CountryEdit
 
     protected override async Task OnInitializedAsync()
     {
-        var responseHttp = await Repository.GetAsync<Country>($"api/countries/{Id}");
+        var responseHttp = await Repository.GetAsync<CountryDTO>($"api/countries/{Id}");
 
         if (responseHttp.Error)
         {
@@ -37,13 +38,13 @@ public partial class CountryEdit
         }
         else
         {
-            country = responseHttp.Response;
+            countryDTO = responseHttp.Response;
         }
     }
 
     private async Task EditAsync()
     {
-        var responseHttp = await Repository.PutAsync("api/countries", country);
+        var responseHttp = await Repository.PutAsync("api/countries", countryDTO);
 
         if (responseHttp.Error)
         {

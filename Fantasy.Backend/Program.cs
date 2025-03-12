@@ -19,6 +19,8 @@ using Fantasy.Backend.Middlewares;
 using Fantasy.Backend.UnitOfWork.Domain.Implementations;
 using Fantasy.Backend.UnitOfWork.Domain.Interfaces;
 using Fantasy.Shared.Entities.Infraestructure;
+using Fantasy.Backend.Repositories.Infraestructure.Implementations;
+using Fantasy.Backend.UnitOfWork.Infraestructure.Implementations;
 
 [ExcludeFromCodeCoverage(Justification = "It is a wrapper used to test other classes. There is no way to prove it.")]
 internal class Program
@@ -81,6 +83,16 @@ internal class Program
         builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
         builder.Services.AddScoped<ICountriesRepository, CountriesRepository>();
         builder.Services.AddScoped<ICountriesUnitOfWork, CountriesUnitOfWork>();
+        builder.Services.AddScoped<ICurrenciesRepository, CurrenciesRepository>();
+        builder.Services.AddScoped<ICurrenciesUnitOfWork, CurrenciesUnitOfWork>();
+        builder.Services.AddScoped<IEnterprisesRepository, EnterprisesRepository>();
+        builder.Services.AddScoped<IEnterprisesUnitOfWork, EnterprisesUnitOfWork>();
+        builder.Services.AddScoped<IModulesRepository, ModulesRepository>();
+        builder.Services.AddScoped<IModulesUnitOfWork, ModulesUnitOfWork>();
+        builder.Services.AddScoped<ISubscriptionsUnitOfWork, SubscriptionsUnitOfWork>();
+        builder.Services.AddScoped<ISubscriptionsRepository, SubscriptionsRepository>();
+        builder.Services.AddScoped<ITenantsRepository, TenantsRepository>();
+        builder.Services.AddScoped<ITenantsUnitOfWork, TenantsUnitOfWork>();
         builder.Services.AddScoped<IUsersRepository, UsersRepository>();
         builder.Services.AddScoped<IUsersUnitOfWork, UsersUnitOfWork>();
 

@@ -1,4 +1,4 @@
-﻿@if(country is null)
+﻿@if(countryDTO is null)
 {
     <Loading/>
 }
@@ -6,7 +6,7 @@ else
 {
     <MudDialog>
         <DialogContent>
-            <CountryForm @ref="countryForm" Country="country" OnValidSubmit="EditAsync" ReturnAction="Return" />
+            <CountryForm @ref="countryForm" CountryDTO="countryDTO" OnValidSubmit="EditAsync" ReturnAction="Return" />
         </DialogContent>
     </MudDialog>
 }

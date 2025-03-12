@@ -10,12 +10,12 @@ namespace Fantasy.Shared.Entities.Infraestructure;
 
 public class Enterprise : IMustHaveTenant
 {
-    public Guid Id { get; set; } = Guid.NewGuid();
+    public int Id { get; set; }
 
     [Display(Name = "EnterpriseName", ResourceType = typeof(Literals))]
     [MaxLength(100, ErrorMessageResourceName = "IUMaxLength", ErrorMessageResourceType = typeof(Literals))]
     [Required(ErrorMessageResourceName = "IURequiredField", ErrorMessageResourceType = typeof(Literals))]
-    public string Name { get; set; } = null!;
+    public string Name { get; set; }
 
-    public Guid TenantId { get; set; }
+    public int TenantId { get; set; }
 }

@@ -411,8 +411,8 @@
   <data name="AppAddTeam" xml:space="preserve">
     <value>Add Team</value>
   </data>
-  <data name="AppSelectATeam" xml:space="preserve">
-    <value>-- Select a Team --</value>
+  <data name="AppSelect" xml:space="preserve">
+    <value>-- Select a option--</value>
   </data>
   <data name="IUDate" xml:space="preserve">
     <value>Date</value>
@@ -668,5 +668,95 @@
   </data>
   <data name="UserImage" xml:space="preserve">
     <value>Image</value>
+  </data>
+  <data name="TenantCode" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="TenantName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="TenantConnectionString" xml:space="preserve">
+    <value>Connection String</value>
+  </data>
+  <data name="Tenants" xml:space="preserve">
+    <value>Tenants</value>
+  </data>
+  <data name="Tenant" xml:space="preserve">
+    <value>Tenant</value>
+  </data>
+  <data name="SubscriptionName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="SubscriptionTenant" xml:space="preserve">
+    <value>Tenant</value>
+  </data>
+  <data name="SubscriptionConnectionString" xml:space="preserve">
+    <value>Connection string</value>
+  </data>
+  <data name="SubscriptionExpirationDate" xml:space="preserve">
+    <value>Expiration </value>
+  </data>
+  <data name="SubscriptionMaxUsers" xml:space="preserve">
+    <value>Max Users</value>
+  </data>
+  <data name="SubscriptionMaxEnterprises" xml:space="preserve">
+    <value>Max Enterprises</value>
+  </data>
+  <data name="SubscriptionMaxElectronicsDocs" xml:space="preserve">
+    <value>Max electronic docs</value>
+  </data>
+  <data name="SubscriptionMaxSpace" xml:space="preserve">
+    <value>Max Space</value>
+  </data>
+  <data name="SubscriptionDiskSpace" xml:space="preserve">
+    <value>Disk space</value>
+  </data>
+  <data name="Subscription" xml:space="preserve">
+    <value>Subscription</value>
+  </data>
+  <data name="Subscriptions" xml:space="preserve">
+    <value>Subscriptions</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="CountryCode" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="CountryISOname" xml:space="preserve">
+    <value>ISO name</value>
+  </data>
+  <data name="CountryAlfa2Code" xml:space="preserve">
+    <value>Alfa2 Code</value>
+  </data>
+  <data name="CountryAlfa3Code" xml:space="preserve">
+    <value>Alfa3 Code</value>
+  </data>
+  <data name="CountryDefaultCurrencyCode" xml:space="preserve">
+    <value>Default Currency</value>
+  </data>
+  <data name="CountryCallingCode" xml:space="preserve">
+    <value>Calling Code</value>
+  </data>
+  <data name="CountryGuid" xml:space="preserve">
+    <value>GUID</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+  <data name="CurrencyCode" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="CurrencyValue" xml:space="preserve">
+    <value>Value</value>
+  </data>
+  <data name="CurrencyGuid" xml:space="preserve">
+    <value>GUID</value>
+  </data>
+  <data name="Currencies" xml:space="preserve">
+    <value>Currencies</value>
+  </data>
+  <data name="Countries" xml:space="preserve">
+    <value>Countries</value>
   </data>
 </root>

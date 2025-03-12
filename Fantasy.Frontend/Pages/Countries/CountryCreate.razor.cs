@@ -10,7 +10,7 @@ namespace Fantasy.Frontend.Pages.Countries;
 public partial class CountryCreate
 {
     private CountryForm? countryForm;
-    private Country country = new();
+    private CountryDTO countryDTO = new();
 
     [Inject] private IRepository Repository { get; set; } = null!;
     [Inject] private NavigationManager NavigationManager { get; set; } = null!;
@@ -19,7 +19,7 @@ public partial class CountryCreate
 
     private async Task CreateAsync()
     {
-        var responseHttp = await Repository.PostAsync("/api/countries", country);
+        var responseHttp = await Repository.PostAsync("/api/countries", countryDTO);
         if (responseHttp.Error)
         {
             var message = await responseHttp.GetErrorMessageAsync();

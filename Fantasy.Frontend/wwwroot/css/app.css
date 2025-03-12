@@ -6,6 +6,10 @@ h1:focus {
     outline: none;
 }
 
+.mud-button {
+    text-transform: none !important;
+}
+
 a, .btn-link {
     color: #0071c1;
 }

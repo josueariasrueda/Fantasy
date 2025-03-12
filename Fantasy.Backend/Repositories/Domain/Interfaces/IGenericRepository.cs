@@ -1,4 +1,5 @@
 ﻿using Fantasy.Shared.DTOs;
+using Fantasy.Shared.Entities.Infraestructure;
 using Fantasy.Shared.Responses;
 
 namespace Fantasy.Backend.Repositories.Domain.Interfaces;

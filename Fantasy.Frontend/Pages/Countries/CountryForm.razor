@@ -6,19 +6,47 @@
 
 
     <MudTextField Label="@L["Country"]"
-                  @bind-Value="@Country.Name"
-                  For="@(() => Country.Name)"
+                  @bind-Value="@CountryDTO.Name"
+                  For="@(() => CountryDTO.Name)"
                   Class="mb-4" />
-    <MudTextField Label="@L["Code"]"
-                  @bind-Value="@Country.Code"
-                  For="@(() => Country.Code)"
+    <MudTextField Label="@L["CountryCode"]"
+                  @bind-Value="@CountryDTO.Code"
+                  For="@(() => CountryDTO.Code)"
                   Class="mb-4" />
-    <MudTextField Label="@L["CallingCode"]"
-                  @bind-Value="@Country.CallingCode"
-                  For="@(() => Country.CallingCode)"
+    <MudTextField Label="@L["CountryISOname"]"
+                  @bind-Value="@CountryDTO.ISOname"
+                  For="@(() => CountryDTO.ISOname)"
+                  Class="mb-4" />
+    <MudTextField Label="@L["CountryAlfa2Code"]"
+                  @bind-Value="@CountryDTO.Alfa2Code"
+                  For="@(() => CountryDTO.Alfa2Code)"
+                  Class="mb-4" />
+    <MudTextField Label="@L["CountryAlfa3Code"]"
+                  @bind-Value="@CountryDTO.Alfa3Code"
+                  For="@(() => CountryDTO.Alfa3Code)"
                   Class="mb-4" />
 
+    <MudAutocomplete T="Currency"
+                     Label=@L["CountryDefaultCurrencyCode"]
+                     Placeholder=@L["AppSelect"]
+                     SearchFunc="SearchCurrency"
+                     Value="selectedCurrency"
+                     ValueChanged="CurrencyChanged" 
+                     ToStringFunc="@(e=> e==null?null : $"{e.Name}")"
+                     Class="mb-2">
+        <ItemTemplate Context="itemContext">
+            @itemContext.Name
+        </ItemTemplate>
+    </MudAutocomplete>
 
+    <MudTextField Label="@L["CountryCallingCode"]"
+                  @bind-Value="@CountryDTO.CallingCode"
+                  For="@(() => CountryDTO.CallingCode)"
+                  Class="mb-4" />
+    <MudTextField Label="@L["CountryGuid"]"
+                  @bind-Value="@CountryDTO.GuidCode"
+                  For="@(() => CountryDTO.GuidCode)"
+                  Class="mb-4" />
 
     <MudButton Variant="Variant.Outlined" 
                StartIcon="@Icons.Material.Filled.ArrowBack" 

@@ -10,12 +10,12 @@ namespace Fantasy.Shared.Entities.Infraestructure;
 
 public class Module
 {
-    public Guid Id { get; set; } = Guid.NewGuid();
+    public int Id { get; set; }
 
     [Display(Name = "SubscriptionName", ResourceType = typeof(Literals))]
     [MaxLength(100, ErrorMessageResourceName = "IUMaxLength", ErrorMessageResourceType = typeof(Literals))]
     [Required(ErrorMessageResourceName = "IURequiredField", ErrorMessageResourceType = typeof(Literals))]
-    public string Name { get; set; } = null!;
+    public string Name { get; set; }
 
-    public ICollection<UserTenantPermission> UsersTenantPermissions { get; set; } = new List<UserTenantPermission>();
+    public ICollection<UserTenantPermission> UsersTenantPermissions { get; set; }
 }
