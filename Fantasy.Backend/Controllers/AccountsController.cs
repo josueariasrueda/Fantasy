@@ -238,7 +238,27 @@ public class AccountsController : ControllerBase
         if (result.Succeeded)
         {
             var user = await _usersUnitOfWork.GetUserAsync(model.Email);
-            return Ok(BuildToken(user));
+
+            // Obtener los tenants asociados al usuario
+            var tenants = user.UsersTenantPermissions.Select(utp => utp.Tenant).ToList();
+
+            if (tenants.Count == 1)
+            {
+                // Si solo pertenece a un tenant, seleccionarlo automáticamente
+                var selectedTenant = tenants.First();
+                return Ok(BuildToken(user, selectedTenant.TenantId));
+            }
+            else if (tenants.Count > 1)
+            {
+                // Si pertenece a varios tenants, devolver la lista para que el frontend muestre una ventana modal
+                return Ok(new
+                {
+                    RequiresTenantSelection = true,
+                    Tenants = tenants.Select(t => new { t.TenantId, t.Name }) // Ajusta según las propiedades de Tenant
+                });
+            }
+
+            return BadRequest("ERR_NO_TENANT");
         }
 
         if (result.IsLockedOut)
@@ -254,18 +274,20 @@ public class AccountsController : ControllerBase
         return BadRequest("ERR006");
     }
 
-    private TokenDTO BuildToken(User user)
+
+    private TokenDTO BuildToken(User user, int tenantId)
     {
         var claims = new List<Claim>
-            {
-                new(ClaimTypes.Name, user.Email!),
-                new(ClaimTypes.Role, user.UserType.ToString()),
-                new("FirstName", user.FirstName),
-                new("LastName", user.LastName),
-                new("UserName", $"{user.FirstName} {user.LastName}"),
-                new("Photo", user.Photo ?? string.Empty),
-                new("CountryId", user.Country.Id.ToString())
-            };
+    {
+        new(ClaimTypes.Name, user.Email!),
+        new(ClaimTypes.Role, user.UserType.ToString()),
+        new("FirstName", user.FirstName),
+        new("LastName", user.LastName),
+        new("UserName", $"{user.FirstName} {user.LastName}"),
+        new("Photo", user.Photo ?? string.Empty),
+        new("CountryId", user.Country.Id.ToString()),
+        new("TenantId", tenantId.ToString()) // Incluir el TenantId en el token
+    };
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["jwtKey"]!));
         var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -283,6 +305,7 @@ public class AccountsController : ControllerBase
             Expiration = expiration
         };
     }
+
 
     private async Task<ActionResponse<string>> SendRecoverEmailAsync(User user, string language)
     {

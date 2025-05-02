@@ -11,18 +11,18 @@
 
         public async Task Invoke(HttpContext context)
         {
-            string tenant = "default-tenant";
+            int tenantId = 0; // Valor predeterminado para tenant no identificado
 
             if (context.User.Identity?.IsAuthenticated == true)
             {
                 var tenantClaim = context.User.FindFirst("tenant");
-                if (tenantClaim != null)
+                if (tenantClaim != null && int.TryParse(tenantClaim.Value, out int parsedTenantId))
                 {
-                    tenant = tenantClaim.Value;
+                    tenantId = parsedTenantId;
                 }
             }
 
-            context.Items["Tenant"] = tenant;
+            context.Items["TenantId"] = tenantId; // Almacenar el ID del tenant como int
             await _next(context);
         }
     }

@@ -81,6 +81,9 @@ internal class Program
 
         builder.Services.AddScoped(typeof(IGenericUnitOfWork<>), typeof(GenericUnitOfWork<>));
         builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+
+        builder.Services.AddScoped<IAccountingAccountsRepository, AccountingAccountsRepository>();
+        builder.Services.AddScoped<IAccountingAccountsUnitOfWork, AccountingAccountsUnitOfWork>();
         builder.Services.AddScoped<ICountriesRepository, CountriesRepository>();
         builder.Services.AddScoped<ICountriesUnitOfWork, CountriesUnitOfWork>();
         builder.Services.AddScoped<ICurrenciesRepository, CurrenciesRepository>();

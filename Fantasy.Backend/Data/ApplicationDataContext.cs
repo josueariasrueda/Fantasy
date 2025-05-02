@@ -24,6 +24,7 @@ public class ApplicationDataContext : IdentityDbContext<User>
     public DbSet<UserTenantPermission> UsersTenantPermissions { get; set; }
     public DbSet<Country> Countries { get; set; }
     public DbSet<Currency> Currencies { get; set; }
+    public DbSet<AccountingAccount> AccountingAccounts { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -67,6 +68,12 @@ public class ApplicationDataContext : IdentityDbContext<User>
             .WithMany()
             .HasForeignKey(c => c.DefaultCurrencyId)
             .IsRequired();
+
+        modelBuilder.Entity<AccountingAccount>()
+    .HasOne<Tenant>()
+    .WithMany()
+    .HasForeignKey(a => a.TenantId)
+    .OnDelete(DeleteBehavior.Restrict); // Configura el comportamiento al eliminar un tenant
 
         modelBuilder.Entity<Country>().HasIndex(c => c.Name).IsUnique();
         modelBuilder.Entity<Country>().HasIndex(c => c.Code).IsUnique();
