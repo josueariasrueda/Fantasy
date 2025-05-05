@@ -32,6 +32,9 @@
 
   <ItemGroup>
     <Folder Include="Migrations\ApplicationDBContext\" />
+    <Folder Include="Migrations\DBContext\" />
+    <Folder Include="wwwroot\uploads\" />
+    <Folder Include="wwwroot\uploads\root\user\" />
   </ItemGroup>
 
 </Project>

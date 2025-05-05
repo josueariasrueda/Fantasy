@@ -155,8 +155,16 @@ public class UsersRepository : IUsersRepository
     public async Task<User> GetUserAsync(string email)
     {
         var user = await _context.Users
-            .Include(u => u.Country)
-            .FirstOrDefaultAsync(x => x.Email == email);
+            .Include(u => u.UsersTenantPermissions)
+            .ThenInclude(utp => utp.Tenant)
+            .FirstOrDefaultAsync(u => u.Email == email);
+
+        Console.WriteLine($"User: {user?.Email}, TenantPermissions: {user?.UsersTenantPermissions.Count}");
+        foreach (var permission in user?.UsersTenantPermissions ?? Enumerable.Empty<UserTenantPermission>())
+        {
+            Console.WriteLine($"TenantId: {permission.TenantId}, TenantName: {permission.Tenant?.Name}");
+        }
+
         return user!;
     }
 

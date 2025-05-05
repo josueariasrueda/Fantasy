@@ -132,7 +132,7 @@ public partial class CountriesIndex
             return;
         }
 
-        var responseHttp = await Repository.DeleteAsync($"{baseUrl}/{country.Id}");
+        var responseHttp = await Repository.DeleteAsync($"{baseUrl}/{country.CountryId}");
         if (responseHttp.Error)
         {
             if (responseHttp.HttpResponseMessage.StatusCode == HttpStatusCode.NotFound)

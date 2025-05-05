@@ -135,12 +135,32 @@ public class AccountsController : ControllerBase
                 return NotFound();
             }
 
+            // Extraer el TenantId del contexto
+            var tenantIdClaim = User.Claims.FirstOrDefault(c => c.Type == "TenantId");
+            if (tenantIdClaim == null)
+            {
+                return BadRequest("TenantId is missing in the request.");
+            }
+
+            if (!int.TryParse(tenantIdClaim.Value, out var tenantId))
+            {
+                return BadRequest("Invalid TenantId format.");
+            }
+
+            // Validar que el usuario tiene acceso al TenantId
+            if (!currentUser.UsersTenantPermissions.Any(utp => utp.TenantId == tenantId))
+            {
+                return BadRequest("User does not have access to the specified TenantId.");
+            }
+
+            // Procesar la foto del usuario
             if (!string.IsNullOrEmpty(user.Photo))
             {
                 var photoUser = Convert.FromBase64String(user.Photo);
                 user.Photo = await _fileStorage.SaveFileAsync(photoUser, ".jpg", "users");
             }
 
+            // Actualizar los datos del usuario
             currentUser.FirstName = user.FirstName;
             currentUser.LastName = user.LastName;
             currentUser.PhoneNumber = user.PhoneNumber;
@@ -149,7 +169,8 @@ public class AccountsController : ControllerBase
             var result = await _usersUnitOfWork.UpdateUserAsync(currentUser);
             if (result.Succeeded)
             {
-                return Ok(BuildToken(currentUser));
+                // Crear el token con el TenantId
+                return Ok(BuildToken(currentUser, tenantId));
             }
 
             return BadRequest(result.Errors.FirstOrDefault());
@@ -254,7 +275,7 @@ public class AccountsController : ControllerBase
                 return Ok(new
                 {
                     RequiresTenantSelection = true,
-                    Tenants = tenants.Select(t => new { t.TenantId, t.Name }) // Ajusta según las propiedades de Tenant
+                    Tenants = tenants.Select(t => new { t.TenantId, t.Name }) // Ajusta según las propiedades de MultiTenant
                 });
             }
 
@@ -274,7 +295,6 @@ public class AccountsController : ControllerBase
         return BadRequest("ERR006");
     }
 
-
     private TokenDTO BuildToken(User user, int tenantId)
     {
         var claims = new List<Claim>
@@ -285,7 +305,6 @@ public class AccountsController : ControllerBase
         new("LastName", user.LastName),
         new("UserName", $"{user.FirstName} {user.LastName}"),
         new("Photo", user.Photo ?? string.Empty),
-        new("CountryId", user.Country.Id.ToString()),
         new("TenantId", tenantId.ToString()) // Incluir el TenantId en el token
     };
 
@@ -305,7 +324,6 @@ public class AccountsController : ControllerBase
             Expiration = expiration
         };
     }
-
 
     private async Task<ActionResponse<string>> SendRecoverEmailAsync(User user, string language)
     {

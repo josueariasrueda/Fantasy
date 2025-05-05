@@ -95,7 +95,7 @@ namespace Fantasy.Frontend.Pages.Auth
             userDTO.UserType = UserType.User;
             userDTO.UserName = userDTO.Email;
             userDTO.Country = selectedCountry;
-            userDTO.CountryId = selectedCountry.Id;
+            userDTO.CountryId = selectedCountry.CountryId;
             userDTO.Language = System.Globalization.CultureInfo.CurrentCulture.Name.Substring(0, 2);
             if (!string.IsNullOrEmpty(imageUrl))
             {
@@ -165,7 +165,7 @@ namespace Fantasy.Frontend.Pages.Auth
                 Snackbar.Add(string.Format(Localizer["RequiredField"], string.Format(Localizer["PasswordConfirm"])), Severity.Error);
                 hasErrors = true;
             }
-            if (selectedCountry.Id == 0)
+            if (selectedCountry.CountryId == 0)
             {
                 Snackbar.Add(string.Format(Localizer["RequiredField"], string.Format(Localizer["Country"])), Severity.Error);
                 hasErrors = true;

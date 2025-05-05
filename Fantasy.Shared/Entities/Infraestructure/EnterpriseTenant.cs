@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Fantasy.Shared.Entities.Infraestructure;
 
-public class EnterprisesTenant
+public class EnterpriseTenant
 {
+    public int Id { get; set; }
     public int EnterpriseId { get; set; }
     public Enterprise Enterprise { get; set; } = null!;
     public int TenantId { get; set; }

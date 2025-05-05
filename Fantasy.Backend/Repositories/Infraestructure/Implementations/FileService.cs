@@ -3,6 +3,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Fantasy.Backend.Helpers;
 using Fantasy.Backend.Repositories.Infraestructure.Interfaces;
+using Fantasy.Backend.MultiTenant;
 using Microsoft.Extensions.Options;
 using Org.BouncyCastle.Asn1.X509;
 
@@ -31,7 +32,7 @@ public class FileService : IFileService
     // Los usuarios estan en el tenent root
     // El path de un archivo es la combinacion de tenant/folder/filename.extension
 
-    private string GetBaseAndTenantPath() => Path.Combine(_basePath, _currentTenant.GetTenant());
+    private string GetBaseAndTenantPath() => Path.Combine(_basePath, _currentTenant.GetCurrentTenant().StoragePath);
 
     /// <summary>
     /// Loads a file stream from the specified local file path.

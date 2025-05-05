@@ -72,7 +72,7 @@ public class CountriesRepository : GenericRepository<Country>, ICountriesReposit
     {
         var country = await _context.Countries
              //.Include(c => c.Teams)
-             .FirstOrDefaultAsync(c => c.Id == id);
+             .FirstOrDefaultAsync(c => c.CountryId == id);
 
         if (country == null)
         {

@@ -6,7 +6,7 @@ namespace Fantasy.Shared.Entities.Domain
     public class AccountingAccount
     {
         [Key]
-        public int Id { get; set; }
+        public int AccountingAccountId { get; set; }
 
         [Required]
         [StringLength(50)]
@@ -25,7 +25,7 @@ namespace Fantasy.Shared.Entities.Domain
         public bool IsActive { get; set; } = true; // Indica si la cuenta está activa
 
         // Campo para agrupar cuentas
-        public int? ParentAccountId { get; set; } // Id de la cuenta principal (puede ser nulo)
+        public int? ParentAccountId { get; set; } // TenantId de la cuenta principal (puede ser nulo)
 
         [ForeignKey("ParentAccountId")]
         public AccountingAccount? ParentAccount { get; set; } // Relación con la cuenta principal

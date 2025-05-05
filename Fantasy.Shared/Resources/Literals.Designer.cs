@@ -655,6 +655,15 @@ namespace Fantasy.Shared.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tenant.
+        /// </summary>
+        public static string CountryTenant {
+            get {
+                return ResourceManager.GetString("CountryTenant", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Currencies.
         /// </summary>
         public static string Currencies {
@@ -691,11 +700,29 @@ namespace Fantasy.Shared.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tenant.
+        /// </summary>
+        public static string CurrencyTenant {
+            get {
+                return ResourceManager.GetString("CurrencyTenant", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Value.
         /// </summary>
         public static string CurrencyValue {
             get {
                 return ResourceManager.GetString("CurrencyValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tenant.
+        /// </summary>
+        public static string EnterpriseTenant {
+            get {
+                return ResourceManager.GetString("EnterpriseTenant", resourceCulture);
             }
         }
         
@@ -1402,6 +1429,15 @@ namespace Fantasy.Shared.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Creation date.
+        /// </summary>
+        public static string SubscriptionCreationDate {
+            get {
+                return ResourceManager.GetString("SubscriptionCreationDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Disk space.
         /// </summary>
         public static string SubscriptionDiskSpace {
@@ -1510,6 +1546,15 @@ namespace Fantasy.Shared.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Is Active.
+        /// </summary>
+        public static string TenantIsActive {
+            get {
+                return ResourceManager.GetString("TenantIsActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string TenantName {
@@ -1524,6 +1569,15 @@ namespace Fantasy.Shared.Resources {
         public static string Tenants {
             get {
                 return ResourceManager.GetString("Tenants", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Storage Path.
+        /// </summary>
+        public static string TenantStoragePath {
+            get {
+                return ResourceManager.GetString("TenantStoragePath", resourceCulture);
             }
         }
         

@@ -132,7 +132,7 @@ public partial class CurrenciesIndex
             return;
         }
 
-        var responseHttp = await Repository.DeleteAsync($"{baseUrl}/{currency.Id}");
+        var responseHttp = await Repository.DeleteAsync($"{baseUrl}/{currency.CurrencyId}");
         if (responseHttp.Error)
         {
             if (responseHttp.HttpResponseMessage.StatusCode == HttpStatusCode.NotFound)

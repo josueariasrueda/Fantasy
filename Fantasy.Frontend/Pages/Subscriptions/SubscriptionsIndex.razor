@@ -28,8 +28,6 @@ else
         </ToolBarContent>
         <HeaderContent>
             <MudTh>@L["SubscriptionName"]</MudTh>
-            <MudTh>@L["SubscriptionTenant"]</MudTh>
-            <MudTh>@L["SubscriptionConnectionString"]</MudTh>
             <MudTh>@L["SubscriptionExpirationDate"]</MudTh>
             <MudTh>@L["SubscriptionMaxUsers"]</MudTh>
             <MudTh>@L["SubscriptionMaxEnterprises"]</MudTh>
@@ -41,8 +39,6 @@ else
         </HeaderContent>
         <RowTemplate>
             <MudTd>@context.Name</MudTd>
-            <MudTd>@context.Tenant</MudTd>
-            <MudTd>@context.ConnectionString</MudTd>
             <MudTd>@context.ExpirationDate</MudTd>
             <MudTd>@context.MaxUsers</MudTd>
             <MudTd>@context.MaxEnterprises</MudTd>
@@ -53,7 +49,7 @@ else
                 <MudTooltip Text="@L["IUEdit"]">
                     <MudButton Variant="Variant.Filled"
                                Color="Color.Warning"
-                               OnClick="@(() => ShowModalAsync(context.Id, true))">
+                               OnClick="@(() => ShowModalAsync(context.SubscriptionId, true))">
                         <MudIcon Icon="@Icons.Material.Filled.Edit" />
                     </MudButton>
                 </MudTooltip>

@@ -52,7 +52,7 @@ public partial class CountryForm
     private void CurrencyChanged(Currency currency)
     {
         selectedCurrency = currency;
-        CountryDTO.DefaultCurrencyId = currency.Id;
+        CountryDTO.DefaultCurrencyId = currency.CurrencyId;
     }
 
     private async Task OnBeforeInternalNavigation(LocationChangingContext context)

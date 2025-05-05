@@ -73,7 +73,7 @@ namespace Fantasy.Backend.Repositories.Infraestructure.Implementations
         public override async Task<ActionResponse<Module>> GetAsync(int id)
         {
             var module = await _context.Modules
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.ModuleId == id);
 
             if (module == null)
             {

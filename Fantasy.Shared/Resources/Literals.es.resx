@@ -759,4 +759,22 @@
   <data name="Countries" xml:space="preserve">
     <value>Paises</value>
   </data>
+  <data name="SubscriptionCreationDate" xml:space="preserve">
+    <value>Fecha creación</value>
+  </data>
+  <data name="TenantIsActive" xml:space="preserve">
+    <value>Activo</value>
+  </data>
+  <data name="TenantStoragePath" xml:space="preserve">
+    <value>Almacén</value>
+  </data>
+  <data name="EnterpriseTenant" xml:space="preserve">
+    <value>Tenant</value>
+  </data>
+  <data name="CountryTenant" xml:space="preserve">
+    <value>Tenant</value>
+  </data>
+  <data name="CurrencyTenant" xml:space="preserve">
+    <value>Tenant</value>
+  </data>
 </root>

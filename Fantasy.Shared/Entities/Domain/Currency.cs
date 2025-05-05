@@ -1,4 +1,5 @@
-﻿using Fantasy.Shared.Resources;
+﻿using Fantasy.Shared.Entities.Infraestructure;
+using Fantasy.Shared.Resources;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,7 +11,8 @@ namespace Fantasy.Shared.Entities.Domain;
 
 public class Currency
 {
-    public int Id { get; set; }
+    [Key]
+    public int CurrencyId { get; set; }
 
     [Display(Name = "Currency", ResourceType = typeof(Literals))]
     [MaxLength(100, ErrorMessageResourceName = "IUMaxLength", ErrorMessageResourceType = typeof(Literals))]
@@ -28,4 +30,5 @@ public class Currency
     [Display(Name = "CurrencyGuid", ResourceType = typeof(Literals))]
     [MaxLength(100, ErrorMessageResourceName = "IUMaxLength", ErrorMessageResourceType = typeof(Literals))]
     public Guid? GuidCode { get; set; }
+
 }

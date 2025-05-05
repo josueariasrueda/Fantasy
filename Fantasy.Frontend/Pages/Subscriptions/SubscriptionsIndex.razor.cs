@@ -129,7 +129,7 @@ public partial class SubscriptionsIndex
             return;
         }
 
-        var responseHttp = await Repository.DeleteAsync($"{baseUrl}/{subscription.Id}");
+        var responseHttp = await Repository.DeleteAsync($"{baseUrl}/{subscription.SubscriptionId}");
         if (responseHttp.Error)
         {
             if (responseHttp.HttpResponseMessage.StatusCode == HttpStatusCode.NotFound)

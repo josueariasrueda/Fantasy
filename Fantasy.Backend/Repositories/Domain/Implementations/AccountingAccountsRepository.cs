@@ -90,7 +90,7 @@ public class AccountingAccountsRepository : GenericRepository<AccountingAccount>
             .OrderBy(a => a.Code)
             .Select(a => new AccountingAccount
             {
-                Id = a.Id,
+                AccountingAccountId = a.AccountingAccountId,
                 Code = a.Code,
                 Name = a.Name
             })

@@ -29,7 +29,7 @@ namespace Fantasy.Backend.Migrations.ApplicationDBContext
                 name: "Currencies",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    CurrencyId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Code = table.Column<string>(type: "nvarchar(5)", maxLength: 5, nullable: true),
@@ -38,36 +38,52 @@ namespace Fantasy.Backend.Migrations.ApplicationDBContext
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Currencies", x => x.Id);
+                    table.PrimaryKey("PK_Currencies", x => x.CurrencyId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Enterprises",
+                columns: table => new
+                {
+                    EnterpriseId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Active = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Enterprises", x => x.EnterpriseId);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Modules",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    ModuleId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Active = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Modules", x => x.Id);
+                    table.PrimaryKey("PK_Modules", x => x.ModuleId);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Tenants",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    TenantId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Code = table.Column<string>(type: "nvarchar(6)", maxLength: 6, nullable: false),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    StoragePath = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     ConnectionString = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TenantId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tenants", x => x.Id);
+                    table.PrimaryKey("PK_Tenants", x => x.TenantId);
                 });
 
             migrationBuilder.CreateTable(
@@ -95,7 +111,7 @@ namespace Fantasy.Backend.Migrations.ApplicationDBContext
                 name: "Countries",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    CountryId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Code = table.Column<string>(type: "nvarchar(5)", maxLength: 5, nullable: true),
@@ -108,32 +124,69 @@ namespace Fantasy.Backend.Migrations.ApplicationDBContext
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Countries", x => x.Id);
+                    table.PrimaryKey("PK_Countries", x => x.CountryId);
                     table.ForeignKey(
                         name: "FK_Countries_Currencies_DefaultCurrencyId",
                         column: x => x.DefaultCurrencyId,
                         principalTable: "Currencies",
-                        principalColumn: "Id",
+                        principalColumn: "CurrencyId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Enterprises",
+                name: "AccountingAccounts",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    AccountingAccountId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Code = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    Type = table.Column<int>(type: "int", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    ParentAccountId = table.Column<int>(type: "int", nullable: true),
                     TenantId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Enterprises", x => x.Id);
+                    table.PrimaryKey("PK_AccountingAccounts", x => x.AccountingAccountId);
                     table.ForeignKey(
-                        name: "FK_Enterprises_Tenants_TenantId",
+                        name: "FK_AccountingAccounts_AccountingAccounts_ParentAccountId",
+                        column: x => x.ParentAccountId,
+                        principalTable: "AccountingAccounts",
+                        principalColumn: "AccountingAccountId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_AccountingAccounts_Tenants_TenantId",
                         column: x => x.TenantId,
                         principalTable: "Tenants",
-                        principalColumn: "Id",
+                        principalColumn: "TenantId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EnterpriseTenant",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EnterpriseId = table.Column<int>(type: "int", nullable: false),
+                    TenantId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EnterpriseTenant", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_EnterpriseTenant_Enterprises_EnterpriseId",
+                        column: x => x.EnterpriseId,
+                        principalTable: "Enterprises",
+                        principalColumn: "EnterpriseId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_EnterpriseTenant_Tenants_TenantId",
+                        column: x => x.TenantId,
+                        principalTable: "Tenants",
+                        principalColumn: "TenantId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -169,7 +222,7 @@ namespace Fantasy.Backend.Migrations.ApplicationDBContext
                         name: "FK_AspNetUsers_Countries_CountryId",
                         column: x => x.CountryId,
                         principalTable: "Countries",
-                        principalColumn: "Id",
+                        principalColumn: "CountryId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -262,27 +315,34 @@ namespace Fantasy.Backend.Migrations.ApplicationDBContext
                 name: "Subscriptions",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    SubscriptionId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Tenant = table.Column<string>(type: "nvarchar(6)", maxLength: 6, nullable: false),
-                    ConnectionString = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TenantId = table.Column<int>(type: "int", nullable: false),
+                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ExpirationDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     MaxUsers = table.Column<int>(type: "int", nullable: false),
                     MaxEnterprises = table.Column<int>(type: "int", nullable: false),
                     MaxElectronicsDocs = table.Column<int>(type: "int", nullable: false),
                     MaxSpace = table.Column<int>(type: "int", nullable: false),
                     DiskSpace = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    Active = table.Column<bool>(type: "bit", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Subscriptions", x => x.Id);
+                    table.PrimaryKey("PK_Subscriptions", x => x.SubscriptionId);
                     table.ForeignKey(
                         name: "FK_Subscriptions_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Subscriptions_Tenants_TenantId",
+                        column: x => x.TenantId,
+                        principalTable: "Tenants",
+                        principalColumn: "TenantId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -312,15 +372,25 @@ namespace Fantasy.Backend.Migrations.ApplicationDBContext
                         name: "FK_UsersTenantPermissions_Modules_ModuleId",
                         column: x => x.ModuleId,
                         principalTable: "Modules",
-                        principalColumn: "Id",
+                        principalColumn: "ModuleId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_UsersTenantPermissions_Tenants_TenantId",
                         column: x => x.TenantId,
                         principalTable: "Tenants",
-                        principalColumn: "Id",
+                        principalColumn: "TenantId",
                         onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AccountingAccounts_ParentAccountId",
+                table: "AccountingAccounts",
+                column: "ParentAccountId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AccountingAccounts_TenantId",
+                table: "AccountingAccounts",
+                column: "TenantId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -385,8 +455,18 @@ namespace Fantasy.Backend.Migrations.ApplicationDBContext
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Enterprises_TenantId",
-                table: "Enterprises",
+                name: "IX_EnterpriseTenant_EnterpriseId",
+                table: "EnterpriseTenant",
+                column: "EnterpriseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EnterpriseTenant_TenantId",
+                table: "EnterpriseTenant",
+                column: "TenantId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Subscriptions_TenantId",
+                table: "Subscriptions",
                 column: "TenantId");
 
             migrationBuilder.CreateIndex(
@@ -409,6 +489,9 @@ namespace Fantasy.Backend.Migrations.ApplicationDBContext
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "AccountingAccounts");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
             migrationBuilder.DropTable(
@@ -424,7 +507,7 @@ namespace Fantasy.Backend.Migrations.ApplicationDBContext
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Enterprises");
+                name: "EnterpriseTenant");
 
             migrationBuilder.DropTable(
                 name: "Subscriptions");
@@ -434,6 +517,9 @@ namespace Fantasy.Backend.Migrations.ApplicationDBContext
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Enterprises");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

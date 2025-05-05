@@ -759,4 +759,22 @@
   <data name="Countries" xml:space="preserve">
     <value>Countries</value>
   </data>
+  <data name="SubscriptionCreationDate" xml:space="preserve">
+    <value>Creation date</value>
+  </data>
+  <data name="TenantIsActive" xml:space="preserve">
+    <value>Is Active</value>
+  </data>
+  <data name="TenantStoragePath" xml:space="preserve">
+    <value>Storage Path</value>
+  </data>
+  <data name="EnterpriseTenant" xml:space="preserve">
+    <value>Tenant</value>
+  </data>
+  <data name="CountryTenant" xml:space="preserve">
+    <value>Tenant</value>
+  </data>
+  <data name="CurrencyTenant" xml:space="preserve">
+    <value>Tenant</value>
+  </data>
 </root>

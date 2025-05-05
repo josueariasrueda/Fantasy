@@ -30,12 +30,6 @@ public class ApplicationDataContext : IdentityDbContext<User>
     {
         base.OnModelCreating(modelBuilder);
 
-        modelBuilder.Entity<Enterprise>()
-            .HasOne<Tenant>()
-            .WithMany(t => t.Enterprises)
-            .HasForeignKey(e => e.TenantId)
-            .IsRequired();
-
         modelBuilder.Entity<UserTenantPermission>()
             .HasKey(utp => new { utp.UserId, utp.TenantId, utp.ModuleId });
 
@@ -51,6 +45,20 @@ public class ApplicationDataContext : IdentityDbContext<User>
             .HasForeignKey(utp => utp.TenantId)
             .IsRequired();
 
+        // Configurar la relación entre EnterpriseTenant y Tenant
+        modelBuilder.Entity<EnterpriseTenant>()
+            .HasOne(et => et.Tenant) // Cada EnterpriseTenant tiene un Tenant
+            .WithMany(t => t.TenantsEnterprises) // Un Tenant puede tener muchas relaciones con EnterpriseTenant
+            .HasForeignKey(et => et.TenantId) // Clave foránea en EnterpriseTenant
+            .OnDelete(DeleteBehavior.Restrict); // Configurar el comportamiento al eliminar un Tenant
+
+        // Configurar la relación entre EnterpriseTenant y Enterprise
+        modelBuilder.Entity<EnterpriseTenant>()
+            .HasOne(et => et.Enterprise) // Cada EnterpriseTenant tiene una Enterprise
+            .WithMany(e => e.EnterprisesTenants) // Una Enterprise puede tener muchas relaciones con EnterpriseTenant
+            .HasForeignKey(et => et.EnterpriseId) // Clave foránea en EnterpriseTenant
+            .OnDelete(DeleteBehavior.Restrict); // Configurar el comportamiento al eliminar una Enterprise
+
         modelBuilder.Entity<UserTenantPermission>()
             .HasOne(utp => utp.Module)
             .WithMany(m => m.UsersTenantPermissions)
@@ -58,10 +66,10 @@ public class ApplicationDataContext : IdentityDbContext<User>
             .IsRequired();
 
         modelBuilder.Entity<Subscription>()
-            .HasOne(s => s.User)
-            .WithMany(u => u.Subscriptions)
-            .HasForeignKey(s => s.UserId)
-            .IsRequired();
+            .HasOne(s => s.Tenant)
+            .WithMany(t => t.Subscriptions)
+            .HasForeignKey(s => s.TenantId)
+            .OnDelete(DeleteBehavior.Restrict);
 
         modelBuilder.Entity<Country>()
             .HasOne(c => c.DefaultCurrency)
@@ -70,10 +78,10 @@ public class ApplicationDataContext : IdentityDbContext<User>
             .IsRequired();
 
         modelBuilder.Entity<AccountingAccount>()
-    .HasOne<Tenant>()
-    .WithMany()
-    .HasForeignKey(a => a.TenantId)
-    .OnDelete(DeleteBehavior.Restrict); // Configura el comportamiento al eliminar un tenant
+            .HasOne<Tenant>()
+            .WithMany()
+            .HasForeignKey(a => a.TenantId)
+            .OnDelete(DeleteBehavior.Restrict); // Configura el comportamiento al eliminar un tenant
 
         modelBuilder.Entity<Country>().HasIndex(c => c.Name).IsUnique();
         modelBuilder.Entity<Country>().HasIndex(c => c.Code).IsUnique();

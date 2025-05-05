@@ -10,12 +10,14 @@ namespace Fantasy.Shared.Entities.Infraestructure;
 
 public class Module
 {
-    public int Id { get; set; }
+    [Key]
+    public int ModuleId { get; set; }
 
     [Display(Name = "SubscriptionName", ResourceType = typeof(Literals))]
     [MaxLength(100, ErrorMessageResourceName = "IUMaxLength", ErrorMessageResourceType = typeof(Literals))]
     [Required(ErrorMessageResourceName = "IURequiredField", ErrorMessageResourceType = typeof(Literals))]
     public string Name { get; set; }
 
+    public bool Active { get; set; } = true; // Por defecto, los módulos estarán activos
     public ICollection<UserTenantPermission> UsersTenantPermissions { get; set; }
 }

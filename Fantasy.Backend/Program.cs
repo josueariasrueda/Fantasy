@@ -15,12 +15,12 @@ using Fantasy.Backend.Repositories.Domain.Interfaces;
 using Fantasy.Backend.UnitOfWork.Infraestructure.Implementatios;
 using Fantasy.Backend.UnitOfWork.Infraestructure.Interfaces;
 using Fantasy.Backend.Repositories.Infraestructure.Interfaces;
-using Fantasy.Backend.Middlewares;
 using Fantasy.Backend.UnitOfWork.Domain.Implementations;
 using Fantasy.Backend.UnitOfWork.Domain.Interfaces;
 using Fantasy.Shared.Entities.Infraestructure;
 using Fantasy.Backend.Repositories.Infraestructure.Implementations;
 using Fantasy.Backend.UnitOfWork.Infraestructure.Implementations;
+using Fantasy.Backend.MultiTenant;
 
 [ExcludeFromCodeCoverage(Justification = "It is a wrapper used to test other classes. There is no way to prove it.")]
 internal class Program
@@ -65,16 +65,16 @@ internal class Program
                 });
         });
 
-        // Tenant
+        // Inyeccion de dependencia para la base de datos y MultiTenant
         builder.Services.AddHttpContextAccessor();
+        builder.Services.AddDbContext<ApplicationDataContext>(x => x.UseSqlServer("name=ApplicationDataConnection"));
+        builder.Services.AddTransient<TenantDbContextFactory>();
+        builder.Services.AddTransient<ITenantService, TenantService>();
         builder.Services.AddScoped<ICurrentTenant, CurrentTenant>();
+        builder.Services.AddTransient<SeedApplicationDbContext>();
 
         // Agregar configuración desde appsettings.json
         builder.Services.AddScoped<IFileService, FileService>();
-
-        // Inyeccion de dependencia para la base de datos
-        builder.Services.AddDbContext<ApplicationDataContext>(x => x.UseSqlServer("name=ApplicationDataConnection"));
-        builder.Services.AddTransient<SeedApplicationDbContext>();
         builder.Services.AddScoped<IFileStorage, FileStorage>();
         builder.Services.AddScoped<IMailHelper, MailHelper>();
         builder.Services.AddScoped<ISmtpClient, SmtpClientWrapper>();

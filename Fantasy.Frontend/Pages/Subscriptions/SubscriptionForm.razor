@@ -7,23 +7,12 @@
                   @bind-Value="@Subscription.Name"
                   For="@(() => Subscription.Name)"
                   Class="mb-4" />
-     <MudTextField Label="@L["SubscriptionTenant"]"
-                  @bind-Value="@Subscription.Tenant"
-                  For="@(() => Subscription.Tenant)"
-                  Class="mb-4" />
-    <MudTextField Label="@L["SubscriptionConnectionString"]"
-                  @bind-Value="@Subscription.ConnectionString"
-                  For="@(() => Subscription.ConnectionString)"
-                  Class="mb-4" />
     <MudTextField Label="@L["SubscriptionExpirationDate"]"
                   @bind-Value="Subscription.ExpirationDate"
                   For="@(() => Subscription.ExpirationDate)"
                   Type="date"
                   Format="yyyy-MM-dd"
                   Class="mb-2" />
-
-
-
     <MudTextField Label="@L["SubscriptionMaxUsers"]"
                   @bind-Value="@Subscription.MaxUsers"
                   For="@(() => Subscription.MaxUsers)"

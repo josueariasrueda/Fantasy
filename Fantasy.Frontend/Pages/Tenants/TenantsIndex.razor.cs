@@ -133,7 +133,7 @@ public partial class TenantsIndex
             return;
         }
 
-        var responseHttp = await Repository.DeleteAsync($"{baseUrl}/{tenant.Id}");
+        var responseHttp = await Repository.DeleteAsync($"{baseUrl}/{tenant.TenantId}");
         if (responseHttp.Error)
         {
             if (responseHttp.HttpResponseMessage.StatusCode == HttpStatusCode.NotFound)

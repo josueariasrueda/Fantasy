@@ -73,7 +73,7 @@ public class EnterprisesRepository : GenericRepository<Enterprise>, IEnterprises
     public override async Task<ActionResponse<Enterprise>> GetAsync(int id)
     {
         var enterprise = await _context.Enterprises
-            .FirstOrDefaultAsync(e => e.Id == id);
+            .FirstOrDefaultAsync(e => e.EnterpriseId == id);
 
         if (enterprise == null)
         {

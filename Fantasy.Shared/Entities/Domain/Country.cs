@@ -1,11 +1,13 @@
-﻿using Fantasy.Shared.Resources;
+﻿using Fantasy.Shared.Entities.Infraestructure;
+using Fantasy.Shared.Resources;
 using System.ComponentModel.DataAnnotations;
 
 namespace Fantasy.Shared.Entities.Domain;
 
 public class Country
 {
-    public int Id { get; set; }
+    [Key]
+    public int CountryId { get; set; }
 
     [Display(Name = "Country", ResourceType = typeof(Literals))]
     [MaxLength(100, ErrorMessageResourceName = "IUMaxLength", ErrorMessageResourceType = typeof(Literals))]

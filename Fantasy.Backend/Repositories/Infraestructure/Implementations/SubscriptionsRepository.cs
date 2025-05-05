@@ -71,7 +71,7 @@ namespace Fantasy.Backend.Repositories.Infraestructure.Implementations
         public async Task<ActionResponse<Subscription>> GetAsync(int id)
         {
             var subscription = await _context.Subscriptions
-                .FirstOrDefaultAsync(s => s.Id == id);
+                .FirstOrDefaultAsync(s => s.SubscriptionId == id);
 
             if (subscription == null)
             {

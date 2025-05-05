@@ -72,7 +72,7 @@ namespace Fantasy.Backend.Repositories.Infraestructure.Implementations
         public async Task<ActionResponse<Tenant>> GetAsync(int id)
         {
             var tenant = await _context.Tenants
-                .FirstOrDefaultAsync(t => t.Id == id);
+                .FirstOrDefaultAsync(t => t.TenantId == id);
 
             if (tenant == null)
             {
