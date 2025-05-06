@@ -11,14 +11,14 @@ using Fantasy.Backend.UnitOfWork;
 namespace Fantasy.Backend.Data;
 
 [ExcludeFromCodeCoverage(Justification = "It is a wrapper used to test other classes. There is no way to prove it.")]
-public class SeedApplicationDbContext
+public class SeedAppDataContext
 {
-    private readonly ApplicationDataContext _context;
+    private readonly AppDataContext _context;
     private readonly IFileStorage _fileStorage;
     private readonly IUsersUnitOfWork _usersUnitOfWork;
     private readonly IUserService _userService;
 
-    public SeedApplicationDbContext(ApplicationDataContext context, IFileStorage fileStorage, IUsersUnitOfWork usersUnitOfWork, IUserService userService)
+    public SeedAppDataContext(AppDataContext context, IFileStorage fileStorage, IUsersUnitOfWork usersUnitOfWork, IUserService userService)
     {
         _context = context;
         _fileStorage = fileStorage;
@@ -26,7 +26,7 @@ public class SeedApplicationDbContext
         _userService = userService;
     }
 
-    // ApplicationDataContext
+    // AppDataContext
     // ======================
     // Crear el Tenant 0-Root
     // Crear Enteprprise 1-Default Enterprise
@@ -85,9 +85,13 @@ public class SeedApplicationDbContext
 
             // Crear empresas por defecto
             var enterprises = new List<Enterprise>
-        {
-            new Enterprise { Name = "Service Enterprise" },
-        };
+                {
+                    new Enterprise
+                    {   Name = "Service Enterprise",
+                        CreatedBy = appAdminUser.Id,
+                        CreatedOn = DateTimeHelper.UtcNow()
+                    },
+                };
 
             // Agregar empresas a la base de datos
             _context.Enterprises.AddRange(enterprises);
@@ -100,9 +104,7 @@ public class SeedApplicationDbContext
                 var enterpriseTenant = new EnterpriseTenant
                 {
                     EnterpriseId = enterprise.EnterpriseId,
-                    TenantId = rootTenant.TenantId,
-                    CreatedBy = appAdminUser.Id,
-                    CreatedOn = DateTimeHelper.UtcNow()
+                    TenantId = rootTenant.TenantId
                 };
 
                 _context.Set<EnterpriseTenant>().Add(enterpriseTenant);
@@ -147,6 +149,13 @@ public class SeedApplicationDbContext
                 throw new Exception("Root tenant not found. Please ensure the Root tenant is seeded first.");
             }
 
+            // Obtener el usuario creador
+            var appAdminUser = await _userService.GetFirstUserByTypeAsync(UserType.AppAdmin);
+            if (appAdminUser == null)
+            {
+                throw new Exception("No AppAdmin user found. Please ensure at least one AppAdmin user exists.");
+            }
+
             // Crear suscripciones iniciales
             var currentUserId = await _userService.GetCurrentUserIdAsync();
             var subscriptions = new List<Subscription>
@@ -162,21 +171,7 @@ public class SeedApplicationDbContext
                 DiskSpace = 0, // Inicialmente sin uso
                 Active = true,
                 TenantId = rootTenant.TenantId,
-                CreatedBy = currentUserId ?? "System",
-                CreatedOn = DateTimeHelper.UtcNow()
-            },
-            new Subscription
-            {
-                Name = "Premium Subscription",
-                ExpirationDate = DateTime.UtcNow.AddYears(1),
-                MaxUsers = 50,
-                MaxEnterprises = 5,
-                MaxElectronicsDocs = 10000,
-                MaxSpace = 50, // 50 GB
-                DiskSpace = 0,
-                Active = true,
-                TenantId = rootTenant.TenantId,
-                CreatedBy = currentUserId ?? "System",
+                CreatedBy = appAdminUser.Id,
                 CreatedOn = DateTimeHelper.UtcNow()
             }
         };
@@ -258,25 +253,20 @@ public class SeedApplicationDbContext
 
     private async Task CheckAppUsersAsync()
     {
-        // Verificar si ya existe un tenant llamado "Root"
-        if (_context.Tenants.Any(t => t.Name == "Root"))
-        {
-            var rootTenant = await _context.Tenants.FirstOrDefaultAsync(t => t.Name == "Root");
-            await CheckAppUserAsync("App", "admin", "bm.app.admin@yopmail.com", "322 311 4620", "JuanZuluaga.jpg", UserType.AppAdmin, rootTenant.TenantId);
-            await CheckAppUserAsync("App", "user", "bm.app.user@yopmail.com", "322 311 4620", "Brad.jpg", UserType.AppUser, rootTenant.TenantId);
-            await CheckAppUserAsync("Angelina", "Jolie", "bm.angelina@yopmail.com", "322 311 4620", "Angelina.jpg", UserType.User, rootTenant.TenantId);
-            await CheckAppUserAsync("Bob", "Marley", "bm.bob@yopmail.com", "322 311 4620", "bob.jpg", UserType.User, rootTenant.TenantId);
-            await CheckAppUserAsync("Celia", "Cruz", "bm.celia@yopmail.com", "322 311 4620", "celia.jpg", UserType.AppUser, rootTenant.TenantId);
-            await CheckAppUserAsync("Fredy", "Mercury", "bm.fredy@yopmail.com", "322 311 4620", "fredy.jpg", UserType.User, rootTenant.TenantId);
-            await CheckAppUserAsync("Hector", "Lavoe", "bm.hector@yopmail.com", "322 311 4620", "hector.jpg", UserType.User, rootTenant.TenantId);
-            await CheckAppUserAsync("Liv", "Taylor", "bm.liv@yopmail.com", "322 311 4620", "liv.jpg", UserType.User, rootTenant.TenantId);
-            await CheckAppUserAsync("Otep", "Shamaya", "bm.otep@yopmail.com", "322 311 4620", "otep.jpg", UserType.User, rootTenant.TenantId);
-            await CheckAppUserAsync("Ozzy", "Osbourne", "bm.ozzy@yopmail.com", "322 311 4620", "ozzy.jpg", UserType.User, rootTenant.TenantId);
-            await CheckAppUserAsync("Selena", "Quintanilla", "bm.selena@yopmail.com", "322 311 4620", "selena.jpg", UserType.User, rootTenant.TenantId);
-        }
+        await CheckAppUserAsync("App", "admin", "bm.app.admin@yopmail.com", "322 311 4620", "JuanZuluaga.jpg", UserType.AppAdmin);
+        await CheckAppUserAsync("App", "user", "bm.app.user@yopmail.com", "322 311 4620", "Brad.jpg", UserType.AppUser);
+        await CheckAppUserAsync("Angelina", "Jolie", "bm.angelina@yopmail.com", "322 311 4620", "Angelina.jpg", UserType.User);
+        await CheckAppUserAsync("Bob", "Marley", "bm.bob@yopmail.com", "322 311 4620", "bob.jpg", UserType.User);
+        await CheckAppUserAsync("Celia", "Cruz", "bm.celia@yopmail.com", "322 311 4620", "celia.jpg", UserType.AppUser);
+        await CheckAppUserAsync("Fredy", "Mercury", "bm.fredy@yopmail.com", "322 311 4620", "fredy.jpg", UserType.User);
+        await CheckAppUserAsync("Hector", "Lavoe", "bm.hector@yopmail.com", "322 311 4620", "hector.jpg", UserType.User);
+        await CheckAppUserAsync("Liv", "Taylor", "bm.liv@yopmail.com", "322 311 4620", "liv.jpg", UserType.User);
+        await CheckAppUserAsync("Otep", "Shamaya", "bm.otep@yopmail.com", "322 311 4620", "otep.jpg", UserType.User);
+        await CheckAppUserAsync("Ozzy", "Osbourne", "bm.ozzy@yopmail.com", "322 311 4620", "ozzy.jpg", UserType.User);
+        await CheckAppUserAsync("Selena", "Quintanilla", "bm.selena@yopmail.com", "322 311 4620", "selena.jpg", UserType.User);
     }
 
-    private async Task<User> CheckAppUserAsync(string firstName, string lastName, string email, string phone, string image, UserType userType, int tenantId)
+    private async Task<User> CheckAppUserAsync(string firstName, string lastName, string email, string phone, string image, UserType userType)
     {
         var user = await _usersUnitOfWork.GetUserAsync(email);
         if (user == null)

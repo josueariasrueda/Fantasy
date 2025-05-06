@@ -25,10 +25,10 @@ public interface IGenericRepository<T> where T : class
 
 public class GenericRepository<T> : IGenericRepository<T> where T : class
 {
-    private readonly ApplicationDataContext _context;
+    private readonly AppDataContext _context;
     private readonly DbSet<T> _entity;
 
-    public GenericRepository(ApplicationDataContext context)
+    public GenericRepository(AppDataContext context)
     {
         _context = context;
         _entity = context.Set<T>();

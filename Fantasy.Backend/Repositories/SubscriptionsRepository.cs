@@ -24,9 +24,9 @@ public interface ISubscriptionsRepository
 
 public class SubscriptionsRepository : ISubscriptionsRepository
 {
-    private readonly ApplicationDataContext _context;
+    private readonly AppDataContext _context;
 
-    public SubscriptionsRepository(ApplicationDataContext context)
+    public SubscriptionsRepository(AppDataContext context)
     {
         _context = context;
     }

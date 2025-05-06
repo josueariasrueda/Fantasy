@@ -5,9 +5,9 @@ namespace Fantasy.Backend.MultiTenant;
 
 public class TenantDbContextFactory
 {
-    private readonly ApplicationDataContext _applicationContext;
+    private readonly AppDataContext _applicationContext;
 
-    public TenantDbContextFactory(ApplicationDataContext applicationContext)
+    public TenantDbContextFactory(AppDataContext applicationContext)
     {
         _applicationContext = applicationContext;
     }

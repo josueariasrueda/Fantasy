@@ -22,9 +22,9 @@ public interface ICountriesRepository
 
 public class CountriesRepository : GenericRepository<Country>, ICountriesRepository
 {
-    private readonly ApplicationDataContext _context;
+    private readonly AppDataContext _context;
 
-    public CountriesRepository(ApplicationDataContext context) : base(context)
+    public CountriesRepository(AppDataContext context) : base(context)
     {
         _context = context;
     }

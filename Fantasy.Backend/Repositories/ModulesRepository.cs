@@ -27,9 +27,9 @@ public interface IModulesRepository
 
 public class ModulesRepository : GenericRepository<Module>, IModulesRepository
 {
-    private readonly ApplicationDataContext _context;
+    private readonly AppDataContext _context;
 
-    public ModulesRepository(ApplicationDataContext context) : base(context)
+    public ModulesRepository(AppDataContext context) : base(context)
     {
         _context = context;
     }

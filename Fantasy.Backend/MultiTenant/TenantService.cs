@@ -17,9 +17,9 @@ public interface ITenantService
 
 public class TenantService : ITenantService
 {
-    private readonly ApplicationDataContext _applicationContext;
+    private readonly AppDataContext _applicationContext;
 
-    public TenantService(ApplicationDataContext applicationContext)
+    public TenantService(AppDataContext applicationContext)
     {
         _applicationContext = applicationContext;
     }

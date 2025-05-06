@@ -24,9 +24,9 @@ public interface ICurrenciesRepository
 
 public class CurrenciesRepository : GenericRepository<Currency>, ICurrenciesRepository
 {
-    private readonly ApplicationDataContext _context;
+    private readonly AppDataContext _context;
 
-    public CurrenciesRepository(ApplicationDataContext context) : base(context)
+    public CurrenciesRepository(AppDataContext context) : base(context)
     {
         _context = context;
     }

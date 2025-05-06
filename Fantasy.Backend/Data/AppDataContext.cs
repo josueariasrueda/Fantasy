@@ -6,14 +6,14 @@ using System.Collections.Generic;
 
 namespace Fantasy.Backend.Data;
 
-public class ApplicationDataContext : IdentityDbContext<User>
+public class AppDataContext : IdentityDbContext<User>
 {
-    // add-migration -Context ApplicationDataContext -o Migrations/ApplicationDBContext InitialCreate
-    // update-database -Context ApplicationDataContext
-    // remove-migration -Context ApplicationDataContext
-    // Drop-Database -Context "ApplicationDataContext"
+    // add-migration -Context AppDataContext -o Migrations/AppDBContext InitialCreate
+    // update-database -Context AppDataContext
+    // remove-migration -Context AppDataContext
+    // Drop-Database -Context "AppDataContext"
 
-    public ApplicationDataContext(DbContextOptions<ApplicationDataContext> options) : base(options)
+    public AppDataContext(DbContextOptions<AppDataContext> options) : base(options)
     {
     }
 

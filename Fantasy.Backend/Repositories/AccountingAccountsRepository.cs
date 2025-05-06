@@ -21,9 +21,9 @@ public interface IAccountingAccountsRepository
 
 public class AccountingAccountsRepository : GenericRepository<AccountingAccount>, IAccountingAccountsRepository
 {
-    private readonly ApplicationDataContext _context;
+    private readonly AppDataContext _context;
 
-    public AccountingAccountsRepository(ApplicationDataContext context) : base(context)
+    public AccountingAccountsRepository(AppDataContext context) : base(context)
     {
         _context = context;
     }

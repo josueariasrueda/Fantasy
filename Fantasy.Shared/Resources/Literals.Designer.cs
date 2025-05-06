@@ -1465,6 +1465,24 @@ namespace Fantasy.Shared.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Active.
+        /// </summary>
+        public static string SubscriptionIsActive {
+            get {
+                return ResourceManager.GetString("SubscriptionIsActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trial.
+        /// </summary>
+        public static string SubscriptionIsTrial {
+            get {
+                return ResourceManager.GetString("SubscriptionIsTrial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Max electronic docs.
         /// </summary>
         public static string SubscriptionMaxElectronicsDocs {

@@ -51,14 +51,14 @@ public interface IUsersRepository
 
 public class UsersRepository : IUsersRepository
 {
-    private readonly ApplicationDataContext _context;
+    private readonly AppDataContext _context;
     private readonly UserManager<User> _userManager;
     private readonly RoleManager<IdentityRole> _roleManager;
     private readonly SignInManager<User> _signInManager;
     private readonly IFileStorage _fileStorage;
     private readonly IFileService _fileService;
 
-    public UsersRepository(ApplicationDataContext context, UserManager<User> userManager, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager, IFileStorage fileStorage, IFileService fileService)
+    public UsersRepository(AppDataContext context, UserManager<User> userManager, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager, IFileStorage fileStorage, IFileService fileService)
     {
         _context = context;
         _userManager = userManager;

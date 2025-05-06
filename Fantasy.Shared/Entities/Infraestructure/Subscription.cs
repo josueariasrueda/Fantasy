@@ -46,12 +46,6 @@ public class Subscription : AuditableEntity
     [Display(Name = "SubscriptionIsTrial", ResourceType = typeof(Literals))]
     public bool IsTrial { get; set; } = false;
 
-    [Display(Name = "SubscriptionDays", ResourceType = typeof(Literals))]
-    public int Days { get; set; } = 360;
-
-    [Display(Name = "SubscriptionCredits", ResourceType = typeof(Literals))]
-    public int Credits { get; set; } = 0;
-
     [Display(Name = "SubscriptionIsActive", ResourceType = typeof(Literals))]
     public bool Active { get; set; } = true;
 }

@@ -26,9 +26,9 @@ public interface IEnterprisesRepository
 
 public class EnterprisesRepository : GenericRepository<Enterprise>, IEnterprisesRepository
 {
-    private readonly ApplicationDataContext _context;
+    private readonly AppDataContext _context;
 
-    public EnterprisesRepository(ApplicationDataContext context) : base(context)
+    public EnterprisesRepository(AppDataContext context) : base(context)
     {
         _context = context;
     }

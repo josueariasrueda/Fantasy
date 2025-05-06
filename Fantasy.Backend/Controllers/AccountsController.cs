@@ -21,10 +21,10 @@ public class AccountsController : ControllerBase
     private readonly IUsersUnitOfWork _usersUnitOfWork;
     private readonly IConfiguration _configuration;
     private readonly IMailHelper _mailHelper;
-    private readonly ApplicationDataContext _context;
+    private readonly AppDataContext _context;
     private readonly IFileStorage _fileStorage;
 
-    public AccountsController(IUsersUnitOfWork usersUnitOfWork, IConfiguration configuration, IMailHelper mailHelper, ApplicationDataContext context, IFileStorage fileStorage)
+    public AccountsController(IUsersUnitOfWork usersUnitOfWork, IConfiguration configuration, IMailHelper mailHelper, AppDataContext context, IFileStorage fileStorage)
     {
         _usersUnitOfWork = usersUnitOfWork;
         _configuration = configuration;

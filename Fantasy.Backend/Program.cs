@@ -63,11 +63,11 @@ internal class Program
         builder.Services.AddHttpContextAccessor();
         builder.Services.AddScoped<IUserService, UserService>();
         builder.Services.AddScoped<AuthenticationStateProvider, ServerAuthenticationStateProvider>();
-        builder.Services.AddDbContext<ApplicationDataContext>(x => x.UseSqlServer("name=ApplicationDataConnection"));
+        builder.Services.AddDbContext<AppDataContext>(x => x.UseSqlServer("name=ApplicationDataConnection"));
         builder.Services.AddTransient<TenantDbContextFactory>();
         builder.Services.AddTransient<ITenantService, TenantService>();
         builder.Services.AddScoped<ICurrentTenant, CurrentTenant>();
-        builder.Services.AddTransient<SeedApplicationDbContext>();
+        builder.Services.AddTransient<SeedAppDataContext>();
 
         // Agregar configuración desde appsettings.json
         builder.Services.AddScoped<IFileService, FileService>();
@@ -109,7 +109,7 @@ internal class Program
             x.Lockout.MaxFailedAccessAttempts = 3;
             x.Lockout.AllowedForNewUsers = true;
         })
-            .AddEntityFrameworkStores<ApplicationDataContext>()
+            .AddEntityFrameworkStores<AppDataContext>()
             .AddDefaultTokenProviders();
 
         builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -130,7 +130,7 @@ internal class Program
         {
             var scopedFactory = app.Services.GetService<IServiceScopeFactory>();
             using var scope = scopedFactory!.CreateScope();
-            var service = scope.ServiceProvider.GetService<SeedApplicationDbContext>();
+            var service = scope.ServiceProvider.GetService<SeedAppDataContext>();
             service!.SeedAsync().Wait();
         }
 

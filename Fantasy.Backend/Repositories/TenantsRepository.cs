@@ -26,9 +26,9 @@ public interface ITenantsRepository
 
 public class TenantsRepository : ITenantsRepository
 {
-    private readonly ApplicationDataContext _context;
+    private readonly AppDataContext _context;
 
-    public TenantsRepository(ApplicationDataContext context)
+    public TenantsRepository(AppDataContext context)
     {
         _context = context;
     }

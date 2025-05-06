@@ -780,4 +780,10 @@
   <data name="Enterprices" xml:space="preserve">
     <value>Empresas</value>
   </data>
+  <data name="SubscriptionIsTrial" xml:space="preserve">
+    <value>Prueba</value>
+  </data>
+  <data name="SubscriptionIsActive" xml:space="preserve">
+    <value>Activa</value>
+  </data>
 </root>
