@@ -1,5 +1,5 @@
-using Fantasy.Backend.Repositories.Infraestructure.Interfaces;
-using Fantasy.Backend.UnitOfWork.Infraestructure.Interfaces;
+using Fantasy.Backend.Repositories;
+using Fantasy.Backend.UnitOfWork;
 using Fantasy.Shared.DTOs;
 using Fantasy.Shared.Entities.Infraestructure;
 using Fantasy.Shared.Responses;

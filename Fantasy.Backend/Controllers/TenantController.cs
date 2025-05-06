@@ -1,16 +1,9 @@
-using Fantasy.Backend.Repositories.Infraestructure.Interfaces;
-using Fantasy.Backend.UnitOfWork.Domain.Implementations;
-using Fantasy.Backend.UnitOfWork.Domain.Interfaces;
-using Fantasy.Backend.UnitOfWork.Infraestructure.Interfaces;
+using Fantasy.Backend.UnitOfWork;
 using Fantasy.Shared.DTOs;
-using Fantasy.Shared.Entities.Domain;
 using Fantasy.Shared.Entities.Infraestructure;
-using Fantasy.Shared.Responses;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Fantasy.Backend.Controllers;
 

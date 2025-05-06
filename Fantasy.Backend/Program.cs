@@ -1,26 +1,20 @@
-using System.Text;
-using System.Text.Json.Serialization;
 using Fantasy.Backend.Data;
 using Fantasy.Backend.Helpers;
-using Fantasy.Backend.Repositories.Interfaces;
+using Fantasy.Backend.MultiTenant;
+using Fantasy.Backend.Repositories;
+using Fantasy.Backend.Services;
+using Fantasy.Backend.UnitOfWork;
+using Fantasy.Shared.Entities.Infraestructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Components.Server;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Diagnostics.CodeAnalysis;
-using Fantasy.Backend.Repositories.Infraestructure.Implementation;
-using Fantasy.Backend.Repositories.Domain.Implementations;
-using Fantasy.Backend.Repositories.Domain.Interfaces;
-using Fantasy.Backend.UnitOfWork.Infraestructure.Implementatios;
-using Fantasy.Backend.UnitOfWork.Infraestructure.Interfaces;
-using Fantasy.Backend.Repositories.Infraestructure.Interfaces;
-using Fantasy.Backend.UnitOfWork.Domain.Implementations;
-using Fantasy.Backend.UnitOfWork.Domain.Interfaces;
-using Fantasy.Shared.Entities.Infraestructure;
-using Fantasy.Backend.Repositories.Infraestructure.Implementations;
-using Fantasy.Backend.UnitOfWork.Infraestructure.Implementations;
-using Fantasy.Backend.MultiTenant;
+using System.Text;
+using System.Text.Json.Serialization;
 
 [ExcludeFromCodeCoverage(Justification = "It is a wrapper used to test other classes. There is no way to prove it.")]
 internal class Program
@@ -67,6 +61,8 @@ internal class Program
 
         // Inyeccion de dependencia para la base de datos y MultiTenant
         builder.Services.AddHttpContextAccessor();
+        builder.Services.AddScoped<IUserService, UserService>();
+        builder.Services.AddScoped<AuthenticationStateProvider, ServerAuthenticationStateProvider>();
         builder.Services.AddDbContext<ApplicationDataContext>(x => x.UseSqlServer("name=ApplicationDataConnection"));
         builder.Services.AddTransient<TenantDbContextFactory>();
         builder.Services.AddTransient<ITenantService, TenantService>();

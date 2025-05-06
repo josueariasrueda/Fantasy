@@ -777,4 +777,7 @@
   <data name="CurrencyTenant" xml:space="preserve">
     <value>Tenant</value>
   </data>
+  <data name="Enterprices" xml:space="preserve">
+    <value>Enterprices</value>
+  </data>
 </root>

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Fantasy.Shared.Entities.Infraestructure;
 
-public class Subscription
+public class Subscription : AuditableEntity
 {
     [Key]
     public int SubscriptionId { get; set; }
@@ -43,5 +43,15 @@ public class Subscription
     [Display(Name = "SubscriptionDiskSpace", ResourceType = typeof(Literals))]
     public int DiskSpace { get; set; }
 
+    [Display(Name = "SubscriptionIsTrial", ResourceType = typeof(Literals))]
+    public bool IsTrial { get; set; } = false;
+
+    [Display(Name = "SubscriptionDays", ResourceType = typeof(Literals))]
+    public int Days { get; set; } = 360;
+
+    [Display(Name = "SubscriptionCredits", ResourceType = typeof(Literals))]
+    public int Credits { get; set; } = 0;
+
+    [Display(Name = "SubscriptionIsActive", ResourceType = typeof(Literals))]
     public bool Active { get; set; } = true;
 }

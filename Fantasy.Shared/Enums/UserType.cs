@@ -2,6 +2,8 @@
 
 public enum UserType
 {
+    AppAdmin,
+    AppUser,
     Admin,
     User
 }

@@ -4,6 +4,11 @@ using MimeKit;
 
 namespace Fantasy.Backend.Helpers;
 
+public interface IMailHelper
+{
+    ActionResponse<string> SendMail(string toName, string toEmail, string subject, string body, string language);
+}
+
 public class MailHelper : IMailHelper
 {
     private readonly IConfiguration _configuration;

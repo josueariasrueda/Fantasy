@@ -1,5 +1,4 @@
-﻿using Fantasy.Backend.UnitOfWork.Domain.Interfaces;
-using Fantasy.Backend.UnitOfWork.Infraestructure.Interfaces;
+﻿using Fantasy.Backend.UnitOfWork;
 using Fantasy.Shared.DTOs;
 using Fantasy.Shared.Entities;
 using Fantasy.Shared.Entities.Domain;

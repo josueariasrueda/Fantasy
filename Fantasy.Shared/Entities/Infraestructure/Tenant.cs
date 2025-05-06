@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Fantasy.Shared.Entities.Infraestructure;
 
-public class Tenant : IMustHaveTenant
+public class Tenant : AuditableEntity
 {
     // Un Tenant puede tener muchas empresas
     // Una empresa pertenece a un Tenant

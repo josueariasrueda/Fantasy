@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Fantasy.Shared.Entities.Infraestructure;
 
-public class EnterpriseTenant
+public class EnterpriseTenant : AuditableEntity
 {
     public int Id { get; set; }
     public int EnterpriseId { get; set; }

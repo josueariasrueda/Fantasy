@@ -3,7 +3,7 @@ using System.Security.Claims;
 using System.Text;
 using Fantasy.Backend.Data;
 using Fantasy.Backend.Helpers;
-using Fantasy.Backend.UnitOfWork.Infraestructure.Interfaces;
+using Fantasy.Backend.UnitOfWork;
 using Fantasy.Shared.DTOs;
 using Fantasy.Shared.Entities.Infraestructure;
 using Fantasy.Shared.Responses;
@@ -263,6 +263,11 @@ public class AccountsController : ControllerBase
             // Obtener los tenants asociados al usuario
             var tenants = user.UsersTenantPermissions.Select(utp => utp.Tenant).ToList();
 
+            if (tenants.Count == 0)
+            {
+                // No tiene Tenants asociados
+                return Ok(BuildToken(user, 0));
+            }
             if (tenants.Count == 1)
             {
                 // Si solo pertenece a un tenant, seleccionarlo automáticamente

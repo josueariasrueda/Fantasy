@@ -105,7 +105,7 @@ namespace Fantasy.Frontend.Pages.Auth
 
             if (IsAdmin)
             {
-                userDTO.UserType = UserType.Admin;
+                userDTO.UserType = UserType.AppUser;
             }
 
             loading = true;

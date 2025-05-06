@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Fantasy.Shared.Entities.Infraestructure;
 
-public class Enterprise : IMustHaveTenant
+public class Enterprise : AuditableEntity
 {
     [Key]
     public int EnterpriseId { get; set; }

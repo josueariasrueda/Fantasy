@@ -4,6 +4,17 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Fantasy.Backend.Helpers;
 
+public interface ISmtpClient
+{
+    void Connect(string host, int port, bool useSsl);
+
+    void Authenticate(string username, string password);
+
+    void Send(MimeMessage message);
+
+    void Disconnect(bool quit);
+}
+
 [ExcludeFromCodeCoverage(Justification = "It is a wrapper used to test other classes. There is no way to prove it.")]
 public class SmtpClientWrapper : ISmtpClient
 {

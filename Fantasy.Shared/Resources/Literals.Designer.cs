@@ -718,6 +718,15 @@ namespace Fantasy.Shared.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enterprices.
+        /// </summary>
+        public static string Enterprices {
+            get {
+                return ResourceManager.GetString("Enterprices", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tenant.
         /// </summary>
         public static string EnterpriseTenant {

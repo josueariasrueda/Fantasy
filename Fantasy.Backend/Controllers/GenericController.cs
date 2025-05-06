@@ -1,4 +1,4 @@
-﻿using Fantasy.Backend.UnitOfWork.Infraestructure.Interfaces;
+﻿using Fantasy.Backend.UnitOfWork;
 using Fantasy.Shared.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
